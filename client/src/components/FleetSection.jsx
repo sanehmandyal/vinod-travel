@@ -35,6 +35,13 @@ const FleetSection = ({ limit, showHeading = true }) => {
                     src={getVehicleImage(v)}
                     alt={v.name}
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      const name = (v?.name || '').toLowerCase();
+                      if (name.includes('ertiga')) e.currentTarget.src = '/images/vehicles/ertiga.jpg';
+                      else if (name.includes('tempo')) e.currentTarget.src = '/images/vehicles/tempo.jpg';
+                      else if (name.includes('dzire')) e.currentTarget.src = '/images/vehicles/dzire.jpg';
+                      else e.currentTarget.src = '/images/vehicles/innova.jpg';
+                    }}
                   />
                   {v.featured && (
                     <div className="absolute top-3 right-3 z-10">

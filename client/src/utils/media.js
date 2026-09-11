@@ -27,7 +27,7 @@ export const defaultVehicleImages = {
 
 export const getVehicleImage = (v) => {
   const resolved = resolveImageUrl(v?.image);
-  if (resolved) return resolved;
+  if (resolved && !resolved.includes('unsplash.com')) return resolved;
   const name = (v?.name || '').toLowerCase();
   const cat = (v?.category || '').toLowerCase();
   if (name.includes('dzire') || name.includes('sedan') || cat.includes('sedan') || name.includes('etios')) {
@@ -55,7 +55,7 @@ export const defaultDestinationImages = {
 
 export const getDestinationImage = (d) => {
   const resolved = resolveImageUrl(d?.image);
-  if (resolved) return resolved;
+  if (resolved && !resolved.includes('unsplash.com')) return resolved;
   const to = (d?.to || '').toLowerCase();
   if (to.includes('chandigarh') || to.includes('ixc') || to.includes('pgi')) return defaultDestinationImages.chd;
   if (to.includes('delhi') || to.includes('igi') || to.includes('ncr')) return defaultDestinationImages.delhi;

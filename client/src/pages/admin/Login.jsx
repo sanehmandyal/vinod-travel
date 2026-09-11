@@ -18,7 +18,15 @@ const Login = () => {
       await login(form.email, form.password);
       navigate('/admin/dashboard');
     } catch (err) {
-      setStatus({ loading: false, error: err?.response?.data?.message || 'Invalid credentials' });
+      let errorMessage = 'Invalid credentials';
+      if (err?.response?.data?.message) {
+        errorMessage = err.response.data.message;
+      } else if (err?.response?.status === 404) {
+        errorMessage = 'Backend API not found (404). Check backend configuration or Vercel API routes.';
+      } else if (err?.message === 'Network Error' || !err?.response) {
+        errorMessage = 'Cannot reach API server. Please check backend deployment & CORS settings.';
+      }
+      setStatus({ loading: false, error: errorMessage });
     }
   };
 
@@ -62,9 +70,11 @@ const Login = () => {
             {status.loading ? 'Signing in...' : 'Sign In'}
           </button>
         </form>
-        <p className="text-body-sm text-on-surface-variant text-center">
-          Forgot your password? Contact the system administrator.
-        </p>
+        <div className="pt-2 border-t border-surface-container text-center space-y-1">
+          <p className="text-xs text-on-surface-variant">
+            Admin Login: <span className="font-semibold text-primary">admin@vinodtravelsuna.com</span>
+          </p>
+        </div>
       </div>
     </div>
   );

@@ -39,6 +39,11 @@ const DestinationsSection = ({ limit, showHeading = true }) => {
                     src={getDestinationImage(d)}
                     alt={d.to}
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      const to = (d?.to || '').toLowerCase();
+                      if (to.includes('manali')) e.currentTarget.src = '/images/destinations/manali.jpg';
+                      else e.currentTarget.src = '/images/destinations/shimla.jpg';
+                    }}
                   />
                   <div className="absolute top-3 left-3 z-10 flex items-center gap-2">
                     <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-bold text-xs shadow-sm">

@@ -44,6 +44,11 @@ const TourPackagesSection = ({ limit, showHeading = true }) => {
                     src={getTourPackageImage(t)}
                     alt={t.title}
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
+                    onError={(e) => {
+                      const title = (t?.title || '').toLowerCase();
+                      if (title.includes('manali')) e.currentTarget.src = '/images/destinations/manali.jpg';
+                      else e.currentTarget.src = '/images/destinations/shimla.jpg';
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
                   <span className="absolute top-3 left-3 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md text-white font-bold text-xs shadow-sm">

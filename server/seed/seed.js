@@ -17,7 +17,7 @@ const vehicles = [
     name: 'Maruti Dzire Executive Sedan',
     category: 'Sedan',
     seatingCapacity: '4+1 Seater',
-    image: 'https://images.unsplash.com/photo-1549399542-7e3f8b79c341?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/vehicles/dzire.jpg',
     description:
       'Fuel-efficient, whisper-quiet cabin, perfect for couples and small family travel to Chandigarh and Delhi NCR.',
     features: ['2 Large Bags', 'Climate AC', 'Hill Permit OK'],
@@ -29,7 +29,7 @@ const vehicles = [
     name: 'Maruti Ertiga Hybrid',
     category: 'Family SUV',
     seatingCapacity: '6+1 Seater',
-    image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/vehicles/ertiga.jpg',
     description:
       'High ground clearance, flexible 3rd row seating, and generous roof luggage carriers for family pilgrimage and vacations.',
     features: ['4 Bags + Carrier', 'Dual AC', 'Comfort Recline'],
@@ -41,7 +41,7 @@ const vehicles = [
     name: 'Toyota Innova Crysta',
     category: 'Luxury MPV',
     seatingCapacity: '6/7+1 Seater',
-    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/vehicles/innova.jpg',
     description:
       'The gold standard in mountain travel. Plush leather captain recliners, independent climate zones, and unmatched uphill ride dampening.',
     features: ['Captain Seats', '5+ Bags', 'Hill Master Driver'],
@@ -53,7 +53,7 @@ const vehicles = [
     name: 'Luxury Tempo Traveller',
     category: 'Group Transit',
     seatingCapacity: '12 to 17 Seats',
-    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/vehicles/tempo.jpg',
     description:
       'Ideal for wedding groups, extended family yatras, and corporate outings with pushback 1x1 recliners, onboard LED & sound system.',
     features: ['12 - 17 Guests', 'Heavy Boot', 'Pushback Seats'],
@@ -91,7 +91,7 @@ const destinations = [
     distanceKm: 160,
     durationLabel: '~4.5 hrs',
     tag: 'Mountain Scenic',
-    image: 'https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/destinations/shimla.jpg',
     description:
       'Ascend to the Queen of Hills via Bilaspur / Solan route. Drop to Mall Road lifts, Lakkar Bazaar, and high-altitude Kufri resorts.',
     approxFare: '3,600 - 4,000',
@@ -102,7 +102,7 @@ const destinations = [
     distanceKm: 245,
     durationLabel: '~7 hrs',
     tag: 'Himalayan Scenic',
-    image: 'https://images.unsplash.com/photo-1605649487212-47bdab064df7?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/destinations/manali.jpg',
     description:
       'Scenic route via Bilaspur, Mandi and Kullu valley along the Beas river to the adventure capital of Himachal.',
     approxFare: '5,800 - 6,300',
@@ -150,7 +150,7 @@ const tourPackages = [
     title: 'Shimla & Kufri Package',
     tagline: 'Queen of Hills',
     duration: '3 Days / 2 Nights',
-    image: 'https://images.unsplash.com/photo-1597074866923-dc0589150358?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/destinations/shimla.jpg',
     description:
       'Includes Mall Road, Christ Church, Jakhu Temple ropeway, Kufri snow amusement park, and green valley viewpoints.',
     price: '8,500',
@@ -160,7 +160,7 @@ const tourPackages = [
     title: 'Manali & Rohtang Pass',
     tagline: 'Adventure & Snow',
     duration: '4 Days / 3 Nights',
-    image: 'https://images.unsplash.com/photo-1586861635167-e5223aadc9fe?auto=format&fit=crop&w=1200&q=80',
+    image: '/images/destinations/manali.jpg',
     description:
       'Covers Solang Valley paragliding, Atal Tunnel, Sissu waterfalls, Hadimba Temple, and Vashisht hot springs.',
     price: '13,500',
