@@ -57,6 +57,14 @@ const Dashboard = () => {
             <StatCard icon="cancel" label="Cancelled" value={stats.cancelled} color="bg-error-container text-on-error-container" />
           </div>
 
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-space-md mb-space-lg">
+            <StatCard icon="directions_car" label="Fleet Vehicles" value={stats.content?.vehicles ?? 0} color="bg-primary-container text-on-primary" />
+            <StatCard icon="route" label="Routes" value={stats.content?.destinations ?? 0} color="bg-secondary-container text-on-secondary-container" />
+            <StatCard icon="landscape" label="Tour Packages" value={stats.content?.tourPackages ?? 0} color="bg-tertiary-fixed text-on-tertiary-fixed" />
+            <StatCard icon="photo_library" label="Gallery Items" value={stats.content?.galleryItems ?? 0} color="bg-primary-fixed text-on-primary-fixed" />
+            <StatCard icon="reviews" label="Reviews" value={stats.content?.reviews ?? 0} color="bg-surface-container-high text-primary" />
+          </div>
+
           <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg mb-space-xl flex flex-col md:flex-row md:items-center justify-between gap-4 border border-surface-container">
             <div>
               <h3 className="font-title-md text-title-md text-primary font-bold">Populate Website Data into Admin Panel</h3>

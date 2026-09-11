@@ -1,5 +1,10 @@
 const asyncHandler = require('express-async-handler');
 const Booking = require('../models/Booking');
+const Vehicle = require('../models/Vehicle');
+const Destination = require('../models/Destination');
+const TourPackage = require('../models/TourPackage');
+const GalleryItem = require('../models/GalleryItem');
+const Review = require('../models/Review');
 
 // @desc    Create a new booking (public, from website)
 // @route   POST /api/bookings
@@ -69,15 +74,20 @@ const deleteBooking = asyncHandler(async (req, res) => {
 // @route   GET /api/bookings/stats/summary
 // @access  Private
 const getBookingStats = asyncHandler(async (req, res) => {
-  const [total, pending, confirmed, completed, cancelled] = await Promise.all([
+  const [total, pending, confirmed, completed, cancelled, vehicles, destinations, tourPackages, galleryItems, reviews] = await Promise.all([
     Booking.countDocuments(),
     Booking.countDocuments({ status: 'Pending' }),
     Booking.countDocuments({ status: 'Confirmed' }),
     Booking.countDocuments({ status: 'Completed' }),
     Booking.countDocuments({ status: 'Cancelled' }),
+    Vehicle.countDocuments(),
+    Destination.countDocuments(),
+    TourPackage.countDocuments(),
+    GalleryItem.countDocuments(),
+    Review.countDocuments(),
   ]);
   const recent = await Booking.find().sort({ createdAt: -1 }).limit(8);
-  res.json({ total, pending, confirmed, completed, cancelled, recent });
+  res.json({ total, pending, confirmed, completed, cancelled, recent, content: { vehicles, destinations, tourPackages, galleryItems, reviews } });
 });
 
 module.exports = {
