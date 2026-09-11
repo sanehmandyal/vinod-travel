@@ -304,7 +304,7 @@ const seedData = async () => {
     }
 
     const adminEmail = process.env.ADMIN_SEED_EMAIL || 'admin@vinodtravelsuna.com';
-    const adminPassword = process.env.ADMIN_SEED_PASSWORD || 'ChangeMe@123';
+    const adminPassword = process.env.ADMIN_SEED_PASSWORD || 'V!nodTravels#2026Una';
 
     const existingAdmin = await User.findOne({ email: adminEmail });
     if (!existingAdmin) {
@@ -316,7 +316,9 @@ const seedData = async () => {
       });
       console.log(`Admin user created -> email: ${adminEmail} / password: ${adminPassword}`);
     } else {
-      console.log('Admin user already exists, skipping creation.');
+      existingAdmin.password = adminPassword;
+      await existingAdmin.save();
+      console.log(`Admin password updated -> email: ${adminEmail}`);
     }
 
     console.log('Seed data imported successfully!');

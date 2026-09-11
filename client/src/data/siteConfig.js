@@ -185,7 +185,7 @@ export const fallbackVehicles = [
     name: 'Toyota Innova Crysta',
     category: 'Luxury MPV',
     seatingCapacity: '6/7+1 Seater',
-    image: '/images/vehicles/innova.jpg',
+    image: 'https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?auto=format&fit=crop&w=1200&q=80',
     description:
       'The gold standard in mountain travel. Plush leather captain recliners, independent climate zones, and unmatched uphill ride dampening.',
     features: ['Captain Seats', '5+ Bags', 'Hill Master Driver'],
@@ -197,7 +197,7 @@ export const fallbackVehicles = [
     name: 'Luxury Tempo Traveller',
     category: 'Group Transit',
     seatingCapacity: '12 to 17 Seats',
-    image: '/images/vehicles/tempo.jpg',
+    image: 'https://images.unsplash.com/photo-1570125909232-eb263c188f7e?auto=format&fit=crop&w=1200&q=80',
     description:
       'Ideal for wedding groups, extended family yatras, and corporate outings with pushback 1x1 recliners, onboard LED & sound system.',
     features: ['12 - 17 Guests', 'Heavy Boot', 'Pushback Seats'],
