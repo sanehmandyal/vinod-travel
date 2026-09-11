@@ -7,7 +7,8 @@ const connectDB = async () => {
     return cachedConn;
   }
 
-  const primaryUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/vinod_tour_travels';
+  const defaultAtlasUri = 'mongodb://127.0.0.1:27017/vinod_tour_travels';
+  const primaryUri = process.env.MONGO_URI || (process.env.VERCEL ? defaultAtlasUri : 'mongodb://127.0.0.1:27017/vinod_tour_travels');
   try {
     const conn = await mongoose.connect(primaryUri, {
       serverSelectionTimeoutMS: 5000,
