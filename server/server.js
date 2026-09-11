@@ -6,9 +6,24 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 const connectDB = require('./config/db');
+const User = require('./models/User');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
-connectDB();
+const ensureAdminUser = async () => {
+  const email = process.env.ADMIN_SEED_EMAIL || 'admin@vinodtravelsuna.com';
+  const password = process.env.ADMIN_SEED_PASSWORD || 'V!nodTravels#2026Una';
+  const existingAdmin = await User.findOne({ email });
+
+  if (!existingAdmin) {
+    await User.create({
+      name: 'Vinod Travels Admin',
+      email,
+      password,
+      role: 'admin',
+    });
+    console.log(`Admin user created -> email: ${email}`);
+  }
+};
 
 const app = express();
 
@@ -58,4 +73,8 @@ app.use(notFound);
 app.use(errorHandler);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+connectDB().then(async () => {
+  await ensureAdminUser();
+  app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+});
