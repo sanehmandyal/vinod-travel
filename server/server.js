@@ -84,6 +84,14 @@ app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+app.get(['/api/health', '/health'], (req, res) => {
+  res.json({
+    status: 'ok',
+    service: 'Vinod Tour & Travels API',
+    dbConnected: mongoose.connection.readyState >= 1,
+  });
+});
+
 if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
@@ -115,14 +123,6 @@ app.use(async (req, res, next) => {
   }
 
   next();
-});
-
-app.get(['/api/health', '/health'], (req, res) => {
-  res.json({
-    status: 'ok',
-    service: 'Vinod Tour & Travels API',
-    dbConnected: mongoose.connection.readyState >= 1,
-  });
 });
 
 const mountApiRoutes = (router) => {
