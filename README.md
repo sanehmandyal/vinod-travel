@@ -9,6 +9,12 @@ Himachal Pradesh), built as a complete MERN stack project based on the provided 
 ```
 vinod-tour-travels/
 ├── client/                 # React + Vite + Tailwind CSS frontend
+### 5. Vercel deployment
+
+Deploy from the repository root, not the `client/` folder. In Vercel, set **Root Directory** to
+`.` and use the root `vercel.json`; it routes `/api/*` to the serverless function in `api/index.js`.
+The frontend uses the same-origin `/api` path in production. Set these server environment
+variables in Vercel: `MONGO_URI`, `JWT_SECRET`, `ADMIN_SEED_EMAIL`, and `ADMIN_SEED_PASSWORD`.
 │   ├── src/
 │   │   ├── api/            # Axios client + API call helpers
 │   │   ├── components/     # Reusable UI (Header, Footer, sections, admin UI)

@@ -99,6 +99,9 @@ app.use(async (req, res, next) => {
       isConnected = true;
     } catch (err) {
       console.error('Database connection error in request:', err.message);
+      return res.status(503).json({
+        message: 'Database unavailable. Configure a reachable MONGO_URI in the deployment environment.',
+      });
     }
   }
 
