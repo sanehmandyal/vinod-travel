@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const connectDB = require('./config/db');
 const User = require('./models/User');
+const { seedIfEmpty, forceSeed } = require('./seed/defaultData');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const ensureAdminUser = async () => {
@@ -116,6 +117,7 @@ app.use(async (req, res, next) => {
   if (isConnected && !adminEnsured) {
     try {
       await ensureAdminUser();
+      await seedIfEmpty();
       adminEnsured = true;
     } catch (err) {
       console.error('Admin initialization error:', err.message);
@@ -142,6 +144,22 @@ const apiRouter = express.Router();
 mountApiRoutes(apiRouter);
 app.use('/api', apiRouter);
 app.use(apiRouter);
+
+app.post(['/api/settings/seed-default', '/settings/seed-default'], async (req, res) => {
+  try {
+    const counts = await forceSeed();
+    res.json({
+      success: true,
+      message: 'Website default data has been successfully imported into the database!',
+      counts,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: 'Failed to seed default data: ' + err.message,
+    });
+  }
+});
 
 // Serve admin-uploaded images (vehicle photos, destination photos, etc.)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
@@ -172,6 +190,7 @@ if (!process.env.VERCEL) {
   connectDB()
     .then(async () => {
       await ensureAdminUser();
+      await seedIfEmpty();
       isConnected = true;
       adminEnsured = true;
       app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

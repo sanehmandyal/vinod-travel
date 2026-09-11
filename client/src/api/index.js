@@ -38,6 +38,7 @@ export const reviewApi = {
 export const settingsApi = {
   get: () => axiosClient.get('/settings').then((r) => r.data),
   update: (data) => axiosClient.put('/settings', data).then((r) => r.data),
+  seedDefault: () => axiosClient.post('/settings/seed-default').then((r) => r.data),
 };
 
 export const uploadApi = {

@@ -18,9 +18,13 @@ const Login = () => {
       await login(form.email, form.password);
       navigate('/admin/dashboard');
     } catch (err) {
-      let errorMessage = 'Invalid credentials';
+      let errorMessage = 'Invalid email or password';
       if (err?.response?.data?.message) {
         errorMessage = err.response.data.message;
+      } else if (err?.response?.status === 500) {
+        errorMessage = 'Server error (500): Serverless function crashed or configuration error.';
+      } else if (err?.response?.status === 503) {
+        errorMessage = 'Database unavailable (503). Check MongoDB Atlas IP whitelist & connection.';
       } else if (err?.response?.status === 404) {
         errorMessage = 'Backend API not found (404). Check backend configuration or Vercel API routes.';
       } else if (err?.message === 'Network Error' || !err?.response) {

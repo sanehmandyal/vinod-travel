@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminLayout from '../../components/AdminLayout';
 import Icon from '../../components/Icon';
-import { bookingApi } from '../../api';
+import { bookingApi, settingsApi } from '../../api';
 
 const StatCard = ({ icon, label, value, color }) => (
   <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex items-center gap-space-md">
@@ -18,6 +18,8 @@ const StatCard = ({ icon, label, value, color }) => (
 const Dashboard = () => {
   const [stats, setStats] = useState(null);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [seeding, setSeeding] = useState(false);
 
   useEffect(() => {
     bookingApi
@@ -26,17 +28,51 @@ const Dashboard = () => {
       .catch(() => setError('Could not load stats. Is the API server running?'));
   }, []);
 
+  const handleSyncContent = async () => {
+    setSeeding(true);
+    setError('');
+    setSuccess('');
+    try {
+      const res = await settingsApi.seedDefault();
+      setSuccess(res?.message || 'Default content successfully populated in database!');
+    } catch (err) {
+      setError(err?.response?.data?.message || 'Failed to sync content to database.');
+    } finally {
+      setSeeding(false);
+    }
+  };
+
   return (
     <AdminLayout title="Dashboard">
-      {error && <p className="text-error font-body-sm mb-space-md">{error}</p>}
+      {error && <p className="text-error font-body-sm mb-space-md bg-error-container/20 p-3 rounded-xl">{error}</p>}
+      {success && <p className="text-emerald-700 font-body-sm mb-space-md bg-emerald-50 p-3 rounded-xl border border-emerald-200">{success}</p>}
+
       {stats && (
         <>
-          <div className="grid grid-cols-2 md:grid-cols-5 gap-space-md mb-space-xl">
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-space-md mb-space-lg">
             <StatCard icon="event_note" label="Total Bookings" value={stats.total} color="bg-surface-container-high text-primary" />
             <StatCard icon="hourglass_empty" label="Pending" value={stats.pending} color="bg-secondary-container text-on-secondary-container" />
             <StatCard icon="check_circle" label="Confirmed" value={stats.confirmed} color="bg-tertiary-fixed text-on-tertiary-fixed" />
             <StatCard icon="task_alt" label="Completed" value={stats.completed} color="bg-primary-fixed text-on-primary-fixed" />
             <StatCard icon="cancel" label="Cancelled" value={stats.cancelled} color="bg-error-container text-on-error-container" />
+          </div>
+
+          <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg mb-space-xl flex flex-col md:flex-row md:items-center justify-between gap-4 border border-surface-container">
+            <div>
+              <h3 className="font-title-md text-title-md text-primary font-bold">Populate Website Data into Admin Panel</h3>
+              <p className="font-body-sm text-body-sm text-on-surface-variant max-w-xl">
+                If your admin sections show 0 records, click here to sync the default website data (4 Vehicles, 7 Destinations, 4 Tour Packages, 8 Gallery Photos, 3 Reviews) into MongoDB.
+              </p>
+            </div>
+            <button
+              type="button"
+              onClick={handleSyncContent}
+              disabled={seeding}
+              className="inline-flex items-center gap-2 px-space-md py-2.5 rounded-xl bg-primary text-on-primary font-label-md hover:bg-secondary transition-all disabled:opacity-60 whitespace-nowrap self-start md:self-auto shadow-sm"
+            >
+              <Icon name="sync" className={`text-[18px] ${seeding ? 'animate-spin' : ''}`} />
+              <span>{seeding ? 'Syncing to DB...' : 'Sync Default Content to DB'}</span>
+            </button>
           </div>
 
           <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg">

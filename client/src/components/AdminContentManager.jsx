@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import AdminLayout from './AdminLayout';
 import Icon from './Icon';
-import { uploadApi } from '../api';
+import { uploadApi, settingsApi } from '../api';
 import { resolveImageUrl } from '../utils/media';
 
 // Generic admin CRUD screen driven by a field schema, used for the
@@ -17,6 +17,8 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
+  const [seeding, setSeeding] = useState(false);
   const [editing, setEditing] = useState(null); // null = closed, {} = new, {...item} = edit
   const [form, setForm] = useState({});
   const [uploading, setUploading] = useState('');
@@ -28,6 +30,21 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
       .then(setItems)
       .catch(() => setError('Could not load data. Is the API server running?'))
       .finally(() => setLoading(false));
+  };
+
+  const handleSeedData = async () => {
+    setSeeding(true);
+    setError('');
+    setSuccess('');
+    try {
+      const res = await settingsApi.seedDefault();
+      setSuccess(res?.message || 'Default website content successfully synced to database!');
+      load();
+    } catch (err) {
+      setError(err?.response?.data?.message || 'Failed to populate default content.');
+    } finally {
+      setSeeding(false);
+    }
   };
 
   useEffect(load, []);
@@ -107,16 +124,29 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
         <p className="font-body-sm text-body-sm text-on-surface-variant">
           {items.length} item{items.length === 1 ? '' : 's'}
         </p>
-        <button
-          onClick={openNew}
-          className="inline-flex items-center gap-2 px-space-md py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-secondary transition-colors"
-        >
-          <Icon name="add" className="text-[18px]" />
-          Add New
-        </button>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleSeedData}
+            disabled={seeding}
+            title="Populate/restore default website content from user UI into database"
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-surface-container text-primary font-label-sm text-label-sm hover:bg-secondary hover:text-on-secondary transition-colors disabled:opacity-60"
+          >
+            <Icon name="sync" className={`text-[16px] ${seeding ? 'animate-spin' : ''}`} />
+            <span>{seeding ? 'Syncing...' : 'Sync Default Content'}</span>
+          </button>
+          <button
+            onClick={openNew}
+            className="inline-flex items-center gap-2 px-space-md py-2 rounded-xl bg-primary text-on-primary font-label-md text-label-md hover:bg-secondary transition-colors"
+          >
+            <Icon name="add" className="text-[18px]" />
+            Add New
+          </button>
+        </div>
       </div>
 
-      {error && <p className="text-error font-body-sm mb-space-md">{error}</p>}
+      {error && <p className="text-error font-body-sm mb-space-md bg-error-container/20 p-3 rounded-xl">{error}</p>}
+      {success && <p className="text-emerald-700 font-body-sm mb-space-md bg-emerald-50 p-3 rounded-xl border border-emerald-200">{success}</p>}
 
       <div className="bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto">
         <table className="w-full text-left text-body-sm font-body-sm min-w-[700px]">
@@ -134,8 +164,22 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
           <tbody>
             {!loading && items.length === 0 && (
               <tr>
-                <td colSpan={columns.length + 2} className="py-6 text-center text-on-surface-variant">
-                  No items yet. Click "Add New" to create one.
+                <td colSpan={columns.length + 2} className="py-10 px-4 text-center text-on-surface-variant">
+                  <div className="max-w-md mx-auto space-y-3">
+                    <p className="font-body-md text-body-md font-semibold text-primary">No records found in database</p>
+                    <p className="text-xs text-on-surface-variant">
+                      The public website shows default fallback data. Click below to import all default website records (Fleet, Tour Packages, Destinations, Gallery, Reviews) directly into the database.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleSeedData}
+                      disabled={seeding}
+                      className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-on-primary font-label-md hover:bg-secondary transition-all disabled:opacity-60 shadow-sm"
+                    >
+                      <Icon name="sync" className={`text-[18px] ${seeding ? 'animate-spin' : ''}`} />
+                      <span>{seeding ? 'Populating content...' : 'Populate Default Website Content'}</span>
+                    </button>
+                  </div>
                 </td>
               </tr>
             )}

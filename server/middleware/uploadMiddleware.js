@@ -1,10 +1,19 @@
 const path = require('path');
 const fs = require('fs');
+const os = require('os');
 const multer = require('multer');
 
-const uploadDir = path.join(__dirname, '..', 'uploads');
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true });
+// On serverless platforms (like Vercel / AWS Lambda), the application filesystem is read-only except /tmp
+const uploadDir = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'uploads')
+  : path.join(__dirname, '..', 'uploads');
+
+try {
+  if (!fs.existsSync(uploadDir)) {
+    fs.mkdirSync(uploadDir, { recursive: true });
+  }
+} catch (err) {
+  console.warn('Upload directory initialization notice:', err.message);
 }
 
 const storage = multer.diskStorage({
