@@ -57,6 +57,8 @@ if (process.env.CLIENT_URL) {
   });
 }
 
+const fs = require('fs');
+
 app.use(
   cors({
     origin: (origin, callback) => {
@@ -66,17 +68,19 @@ app.use(
         allowedOrigins.includes(normalized) ||
         normalized.startsWith('http://localhost:') ||
         normalized.startsWith('http://127.0.0.1:') ||
-        normalized.endsWith('.vercel.app')
+        normalized.endsWith('.vercel.app') ||
+        normalized.endsWith('.onrender.com')
       ) {
         return callback(null, true);
       }
       return callback(null, true);
     },
     credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept'],
   })
 );
+app.options('*', cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -139,15 +143,21 @@ app.use(apiRouter);
 // Serve admin-uploaded images (vehicle photos, destination photos, etc.)
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-// Serve React build in production (client/dist) when running standalone server
-if (process.env.NODE_ENV === 'production' && !process.env.VERCEL) {
-  const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
+// Serve React build in production only if client/dist exists (e.g. not on standalone API hosts like Render)
+const clientBuildPath = path.join(__dirname, '..', 'client', 'dist');
+const indexHtmlPath = path.join(clientBuildPath, 'index.html');
+
+if (fs.existsSync(indexHtmlPath) && !process.env.VERCEL) {
   app.use(express.static(clientBuildPath));
-  app.get('*', (req, res) =>
-    res.sendFile(path.join(clientBuildPath, 'index.html'))
-  );
-} else if (!process.env.VERCEL) {
-  app.get('/', (req, res) => res.send('Vinod Tour & Travels API is running...'));
+  app.get('*', (req, res) => res.sendFile(indexHtmlPath));
+} else {
+  app.get('/', (req, res) => {
+    res.json({
+      status: 'ok',
+      service: 'Vinod Tour & Travels API',
+      message: 'API is running successfully',
+    });
+  });
 }
 
 app.use(notFound);
