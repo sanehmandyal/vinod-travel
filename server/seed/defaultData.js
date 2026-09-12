@@ -4,6 +4,38 @@ const TourPackage = require('../models/TourPackage');
 const GalleryItem = require('../models/GalleryItem');
 const Review = require('../models/Review');
 const Settings = require('../models/Settings');
+const Booking = require('../models/Booking');
+
+const defaultBookings = [
+  {
+    name: 'Rohit Verma',
+    phone: '+91 98160 12345',
+    email: 'rohit.verma@example.com',
+    tripType: 'One Way',
+    pickup: 'ISBT Una Counter',
+    destination: 'Chandigarh Airport (IXC)',
+    date: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    vehicle: 'Maruti Dzire Executive Sedan',
+    passengers: 2,
+    notes: 'Morning flight transfer. 2 medium luggage bags.',
+    status: 'Confirmed',
+    source: 'Website Form',
+  },
+  {
+    name: 'Simranjeet Kaur',
+    phone: '+91 98722 54321',
+    email: 'simran.kaur@example.com',
+    tripType: 'Round Trip',
+    pickup: 'Una Railway Station',
+    destination: 'Maa Chintpurni Shrine',
+    date: new Date(Date.now() + 48 * 60 * 60 * 1000),
+    vehicle: 'Toyota Innova Crysta',
+    passengers: 5,
+    notes: 'Family pilgrimage darshan with return to Una station.',
+    status: 'Pending',
+    source: 'Website Form',
+  },
+];
 
 const defaultVehicles = [
   {
