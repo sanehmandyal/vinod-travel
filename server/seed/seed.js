@@ -267,19 +267,6 @@ const reviews = [
 ];
 
 const seedData = async () => {
-  try {
-    await connectDB();
-
-    await Promise.all([
-      Vehicle.deleteMany(),
-      Destination.deleteMany(),
-      TourPackage.deleteMany(),
-      GalleryItem.deleteMany(),
-      Review.deleteMany(),
-    ]);
-
-    await Vehicle.insertMany(vehicles);
-    await Destination.insertMany(destinations);
     await TourPackage.insertMany(tourPackages);
     await GalleryItem.insertMany(galleryItems);
     await Review.insertMany(reviews);
