@@ -82,7 +82,7 @@ app.use(
   })
 );
 app.options('*', cors());
-app.use(express.json());
+app.use(express.json({ limit: '12mb' }));
 app.use(express.urlencoded({ extended: true }));
 
 app.get(['/api/health', '/health'], (req, res) => {

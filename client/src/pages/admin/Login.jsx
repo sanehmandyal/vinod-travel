@@ -78,6 +78,13 @@ const Login = () => {
           <p className="text-xs text-on-surface-variant">
             Forgot your password? Contact the system administrator to reset it.
           </p>
+          <a
+            href="/"
+            className="inline-flex items-center gap-1.5 font-label-md text-label-md text-primary hover:text-secondary transition-colors"
+          >
+            <Icon name="arrow_back" className="text-[16px]" />
+            Back to Website
+          </a>
         </div>
       </div>
     </div>
