@@ -120,11 +120,11 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
 
   return (
     <AdminLayout title={title}>
-      <div className="flex items-center justify-between mb-space-md">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-space-sm mb-space-md">
         <p className="font-body-sm text-body-sm text-on-surface-variant">
           {items.length} item{items.length === 1 ? '' : 's'}
         </p>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <button
             type="button"
             onClick={handleSeedData}
@@ -148,7 +148,7 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
       {error && <p className="text-error font-body-sm mb-space-md bg-error-container/20 p-3 rounded-xl">{error}</p>}
       {success && <p className="text-emerald-700 font-body-sm mb-space-md bg-emerald-50 p-3 rounded-xl border border-emerald-200">{success}</p>}
 
-      <div className="bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto">
+      <div className="hidden md:block bg-surface-container-lowest rounded-2xl shadow-sm overflow-x-auto">
         <table className="w-full text-left text-body-sm font-body-sm min-w-[700px]">
           <thead>
             <tr className="text-on-surface-variant border-b border-surface-container">
@@ -219,6 +219,57 @@ const AdminContentManager = ({ title, api, fields, columns }) => {
             ))}
           </tbody>
         </table>
+      </div>
+
+      <div className="md:hidden space-y-space-sm">
+        {!loading && items.length === 0 && (
+          <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg text-center text-on-surface-variant">
+            <p>No records found.</p>
+          </div>
+        )}
+        {items.map((item) => (
+          <article key={item._id} className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-md">
+            <div className="space-y-space-sm">
+              {columns.map((c) => (
+                <div key={c.key} className="flex items-start justify-between gap-4">
+                  <span className="shrink-0 font-label-sm text-label-sm text-on-surface-variant">{c.label}</span>
+                  <span className="text-right font-body-sm text-body-sm text-on-surface">
+                    {c.render ? c.render(item) : item[c.key]}
+                  </span>
+                </div>
+              ))}
+              <div className="flex items-center justify-between gap-4 pt-2 border-t border-surface-container">
+                <span
+                  className={`px-2 py-0.5 rounded-full font-label-sm text-label-sm ${
+                    item.active ? 'bg-tertiary-fixed text-on-tertiary-fixed' : 'bg-surface-container text-on-surface-variant'
+                  }`}
+                >
+                  {item.active ? 'Active' : 'Hidden'}
+                </span>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => openEdit(item)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-surface-container text-primary font-label-sm text-label-sm"
+                    aria-label={`Edit ${item[columns[0]?.key] || 'item'}`}
+                  >
+                    <Icon name="edit" className="text-[16px]" />
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => remove(item._id)}
+                    className="inline-flex items-center gap-1.5 px-3 py-2 rounded-lg bg-error-container text-on-error-container font-label-sm text-label-sm"
+                    aria-label={`Delete ${item[columns[0]?.key] || 'item'}`}
+                  >
+                    <Icon name="delete" className="text-[16px]" />
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
       </div>
 
       {editing !== null && (
