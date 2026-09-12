@@ -1,10 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import AdminLayout from '../../components/AdminLayout';
 import Icon from '../../components/Icon';
 import { bookingApi, settingsApi } from '../../api';
 
-const StatCard = ({ icon, label, value, color }) => (
-  <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex items-center gap-space-md">
+const StatCard = ({ icon, label, value, color, to }) => (
+  <NavLink
+    to={to}
+    className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg flex items-center gap-space-md transition-shadow hover:shadow-md focus:outline-none focus:ring-2 focus:ring-secondary/50"
+    aria-label={`Open ${label}`}
+  >
     <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${color}`}>
       <Icon name={icon} className="text-[24px]" />
     </div>
@@ -12,7 +17,7 @@ const StatCard = ({ icon, label, value, color }) => (
       <div className="font-headline-sm text-headline-sm text-primary font-bold">{value}</div>
       <div className="font-body-sm text-body-sm text-on-surface-variant">{label}</div>
     </div>
-  </div>
+  </NavLink>
 );
 
 const Dashboard = () => {
@@ -50,19 +55,19 @@ const Dashboard = () => {
       {stats && (
         <>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-space-md mb-space-lg">
-            <StatCard icon="event_note" label="Total Bookings" value={stats.total} color="bg-surface-container-high text-primary" />
-            <StatCard icon="hourglass_empty" label="Pending" value={stats.pending} color="bg-secondary-container text-on-secondary-container" />
-            <StatCard icon="check_circle" label="Confirmed" value={stats.confirmed} color="bg-tertiary-fixed text-on-tertiary-fixed" />
-            <StatCard icon="task_alt" label="Completed" value={stats.completed} color="bg-primary-fixed text-on-primary-fixed" />
-            <StatCard icon="cancel" label="Cancelled" value={stats.cancelled} color="bg-error-container text-on-error-container" />
+            <StatCard to="/admin/bookings" icon="event_note" label="Total Bookings" value={stats.total} color="bg-surface-container-high text-primary" />
+            <StatCard to="/admin/bookings" icon="hourglass_empty" label="Pending" value={stats.pending} color="bg-secondary-container text-on-secondary-container" />
+            <StatCard to="/admin/bookings" icon="check_circle" label="Confirmed" value={stats.confirmed} color="bg-tertiary-fixed text-on-tertiary-fixed" />
+            <StatCard to="/admin/bookings" icon="task_alt" label="Completed" value={stats.completed} color="bg-primary-fixed text-on-primary-fixed" />
+            <StatCard to="/admin/bookings" icon="cancel" label="Cancelled" value={stats.cancelled} color="bg-error-container text-on-error-container" />
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-5 gap-space-md mb-space-lg">
-            <StatCard icon="directions_car" label="Fleet Vehicles" value={stats.content?.vehicles ?? 0} color="bg-primary-container text-on-primary" />
-            <StatCard icon="route" label="Routes" value={stats.content?.destinations ?? 0} color="bg-secondary-container text-on-secondary-container" />
-            <StatCard icon="landscape" label="Tour Packages" value={stats.content?.tourPackages ?? 0} color="bg-tertiary-fixed text-on-tertiary-fixed" />
-            <StatCard icon="photo_library" label="Gallery Items" value={stats.content?.galleryItems ?? 0} color="bg-primary-fixed text-on-primary-fixed" />
-            <StatCard icon="reviews" label="Reviews" value={stats.content?.reviews ?? 0} color="bg-surface-container-high text-primary" />
+            <StatCard to="/admin/vehicles" icon="directions_car" label="Fleet Vehicles" value={stats.content?.vehicles ?? 0} color="bg-primary-container text-on-primary" />
+            <StatCard to="/admin/destinations" icon="route" label="Routes" value={stats.content?.destinations ?? 0} color="bg-secondary-container text-on-secondary-container" />
+            <StatCard to="/admin/tour-packages" icon="landscape" label="Tour Packages" value={stats.content?.tourPackages ?? 0} color="bg-tertiary-fixed text-on-tertiary-fixed" />
+            <StatCard to="/admin/gallery" icon="photo_library" label="Gallery Items" value={stats.content?.galleryItems ?? 0} color="bg-primary-fixed text-on-primary-fixed" />
+            <StatCard to="/admin/reviews" icon="reviews" label="Reviews" value={stats.content?.reviews ?? 0} color="bg-surface-container-high text-primary" />
           </div>
 
           <div className="bg-surface-container-lowest rounded-2xl shadow-sm p-space-lg mb-space-xl flex flex-col md:flex-row md:items-center justify-between gap-4 border border-surface-container">
