@@ -1,5 +1,6 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
+const fs = require('fs');
 const { protect } = require('../middleware/authMiddleware');
 const upload = require('../middleware/uploadMiddleware');
 
@@ -25,6 +26,14 @@ router.post(
       res.status(400);
       throw new Error('No image file received');
     }
+
+    // Vercel's filesystem is temporary, so persist the image with the content record.
+    if (process.env.VERCEL) {
+      const image = fs.readFileSync(req.file.path).toString('base64');
+      fs.unlinkSync(req.file.path);
+      return res.status(201).json({ url: `data:${req.file.mimetype};base64,${image}` });
+    }
+
     res.status(201).json({ url: `/uploads/${req.file.filename}` });
   })
 );
