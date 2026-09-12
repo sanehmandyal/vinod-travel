@@ -76,9 +76,7 @@ const Login = () => {
         </form>
         <div className="pt-2 border-t border-surface-container text-center space-y-1">
           <p className="text-xs text-on-surface-variant">
-            Forgot your password? <a href="/admin/forgot-password" className="text-primary hover:underline">
-              Reset it here
-            </a>
+            Forgot your password? Contact the system administrator to reset it.
           </p>
         </div>
       </div>
