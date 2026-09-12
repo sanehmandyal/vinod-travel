@@ -9,7 +9,11 @@ import { getDestinationImage } from '../utils/media';
 const DestinationsSection = ({ limit, showHeading = true }) => {
   const { data: destinations } = useContent(destinationApi.list, fallbackDestinations);
   const { data: settings } = useSettings();
-  const list = limit ? destinations.slice(0, limit) : destinations;
+  const availableDestinations = destinations.filter((destination) => {
+    const name = (destination.to || '').toLowerCase();
+    return !name.includes('dharamshala') && !name.includes('mcleod');
+  });
+  const list = limit ? availableDestinations.slice(0, limit) : availableDestinations;
 
   return (
     <section className="w-full py-20 lg:py-28 bg-white" id="destinations">

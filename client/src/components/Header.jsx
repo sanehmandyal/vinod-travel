@@ -59,16 +59,16 @@ const Header = () => {
       </div>
 
       {/* Main nav */}
-      <div className="h-20 max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop flex items-center justify-between gap-3 sm:gap-4">
-        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group shrink-0">
+      <div className="min-h-20 max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop py-3 flex items-center justify-between gap-2 sm:gap-4">
+        <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
           <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-secondary-fixed shrink-0 shadow-md group-hover:scale-105 transition-transform">
             <Icon name="directions_car" className="text-[22px]" />
           </div>
-          <div className="flex flex-col">
-            <span className="font-headline-sm text-base sm:text-lg font-bold text-primary tracking-tight group-hover:text-secondary transition-colors whitespace-nowrap">
+          <div className="flex flex-col min-w-0">
+            <span className="font-headline-sm text-base sm:text-lg font-bold text-primary tracking-tight group-hover:text-secondary transition-colors truncate">
               {settings.businessName || settings.name}
             </span>
-            <span className="font-label-sm text-[10px] sm:text-[11px] text-on-surface-variant tracking-wider uppercase whitespace-nowrap">
+            <span className="hidden sm:block font-label-sm text-[10px] sm:text-[11px] text-on-surface-variant tracking-wider uppercase truncate">
               ISBT Una • Himachal Pradesh
             </span>
           </div>
@@ -105,15 +105,19 @@ const Header = () => {
           </a>
           <Link
             to="/#booking-card"
-            className="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-secondary text-on-secondary font-bold text-xs shadow-md hover:bg-secondary-fixed hover:text-on-secondary-fixed hover:shadow-lg transition-all whitespace-nowrap"
+            className="inline-flex items-center gap-1.5 px-3 sm:px-4 py-2 rounded-full bg-secondary text-on-secondary font-bold text-xs shadow-md hover:bg-secondary-fixed hover:text-on-secondary-fixed hover:shadow-lg transition-all whitespace-nowrap"
+            aria-label="Book a cab"
           >
             <Icon name="directions_car" className="text-[16px]" />
-            <span>Book Cab</span>
+            <span className="hidden sm:inline">Book Cab</span>
           </Link>
           <button
-            className="xl:hidden w-9 h-9 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors"
+            type="button"
+            className="xl:hidden shrink-0 w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary hover:bg-surface-container-high transition-colors"
             onClick={() => setMenuOpen((v) => !v)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
+            aria-controls="mobile-navigation"
           >
             <Icon name={menuOpen ? 'close' : 'menu'} className="text-[20px]" />
           </button>
@@ -122,7 +126,7 @@ const Header = () => {
 
       {/* Mobile nav */}
       {menuOpen && (
-        <nav className="xl:hidden bg-surface-container-lowest border-t border-surface-container px-gutter-mobile py-space-md flex flex-col gap-space-sm shadow-xl">
+        <nav id="mobile-navigation" className="xl:hidden bg-surface-container-lowest border-t border-surface-container px-gutter-mobile py-space-md flex flex-col gap-space-sm shadow-xl">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}

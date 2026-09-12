@@ -151,20 +151,6 @@ const defaultDestinations = [
   },
   {
     from: 'Una',
-    to: 'Dharamshala / McLeodganj',
-    distanceKm: 95,
-    durationLabel: '~2.5 hrs',
-    tag: 'Kangra Valley',
-    image: 'https://images.unsplash.com/photo-1566837945700-30057527ade0?auto=format&fit=crop&w=1200&q=80',
-    description:
-      'Passing Kangra Fort & Tea Gardens. Direct drop to HPCA Stadium, Dalai Lama Temple, Bhagsu Waterfall, and Dharamkot.',
-    approxFare: '2,800 - 3,200',
-    fareLabel: 'Approx. Sedan Fare',
-    active: true,
-    order: 5,
-  },
-  {
-    from: 'Una',
     to: 'Maa Chintpurni Shrine',
     distanceKm: 52,
     durationLabel: '~1.2 hrs',
