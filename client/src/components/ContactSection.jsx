@@ -256,7 +256,7 @@ const ContactSection = ({ showHeading = true }) => {
               </button>
               <div className="flex items-center justify-center gap-2 text-center text-xs text-slate-500 pt-1">
                 <Icon name="lock" className="text-[14px] text-emerald-600" />
-                <span>Zero spam guaranteed. Your phone number is only used to share the fare quote.</span>
+                <span>Zero spam guaranteed. Your phone number is only used to confirm your ride quote.</span>
               </div>
               {status.success && (
                 <p className="text-sm text-emerald-600 font-medium text-center pt-1">

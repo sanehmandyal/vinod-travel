@@ -7,7 +7,7 @@ const trustPillars = [
   { icon: 'schedule', title: '24/7 Service', sub: 'Always available at ISBT' },
   { icon: 'sanitizer', title: 'Sanitized Cabs', sub: 'Fresh & spotless interiors' },
   { icon: 'terrain', title: 'Hill Drivers', sub: '10+ yrs mountain mastery' },
-  { icon: 'currency_rupee', title: 'Zero Surprises', sub: 'Transparent fare policy' },
+  { icon: 'verified_user', title: 'Honest Service', sub: 'Zero hidden conditions' },
 ];
 
 const Hero = () => {
@@ -95,8 +95,8 @@ const Hero = () => {
               <div className="space-y-3">
                 <h3 className="font-title-lg text-xl font-bold text-white">Direct Mountain Transit</h3>
                 <p className="text-sm text-emerald-100/80 leading-relaxed">
-                  Avoid middlemen &amp; surge pricing. Book clean AC sedans, Innova Crystas, and tempo travellers
-                  with licensed Himachal drivers who know every mountain pass.
+                  Direct counter booking with experienced Himachal drivers. Clean AC sedans, Innova Crystas,
+                  and tempo travellers ready for every mountain pass.
                 </p>
               </div>
 

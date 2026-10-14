@@ -52,9 +52,9 @@ export const services = [
     title: 'Outstation Cab Service',
     subtitle: 'Punjab, Delhi NCR & J&K',
     description:
-      'Reliable one-way drop and roundtrip rentals from Una to Chandigarh, Delhi NCR, Amritsar, Jalandhar, Ludhiana, and Jammu with transparent per-km billing.',
+      'Reliable one-way drop and roundtrip rentals from Una to Chandigarh, Delhi NCR, Amritsar, Jalandhar, Ludhiana, and Jammu with verified mountain chauffeurs.',
     points: [
-      'Dedicated One-Way Fares',
+      'Dedicated One-Way Transfers',
       'All Tolls & Entry Taxes Included',
       'Express NH-44 & Himalayan Expressways',
     ],
@@ -107,9 +107,9 @@ export const whyChooseUs = [
   {
     num: '04',
     icon: 'receipt_long',
-    title: 'Transparent Fares — No Hidden Tolls',
+    title: 'Zero Hidden Charges — Honest Service',
     description:
-      'What we quote is what you pay. Toll taxes, state border entry fees, parking and driver food allowance are clearly stated upfront before departure.',
+      'Clear, upfront quotes with zero surprises. Toll taxes, state border entry permits, and driver allowance are clearly arranged before departure.',
   },
   {
     num: '05',
@@ -136,7 +136,7 @@ export const fleetHighlights = [
 ];
 
 export const quickLinks = [
-  'Home & Fare Matrix',
+  'Home & Booking Matrix',
   'Local & Outstation Rides',
   'Airport Pickup & Drop',
   'Chintpurni Pilgrimage Yatra',
@@ -164,7 +164,6 @@ export const fallbackVehicles = [
     description:
       'Fuel-efficient, whisper-quiet cabin, perfect for couples and small family travel to Chandigarh and Delhi NCR.',
     features: ['2 Large Bags', 'Climate AC', 'Hill Permit OK'],
-    ratePerKm: '10 - 11',
     featured: false,
   },
   {
@@ -176,7 +175,6 @@ export const fallbackVehicles = [
     description:
       'High ground clearance, flexible 3rd row seating, and generous roof luggage carriers for family pilgrimage and vacations.',
     features: ['4 Bags + Carrier', 'Dual AC', 'Comfort Recline'],
-    ratePerKm: '13 - 14',
     featured: false,
   },
   {
@@ -188,7 +186,6 @@ export const fallbackVehicles = [
     description:
       'The gold standard in mountain travel. Plush leather captain recliners, independent climate zones, and unmatched uphill ride dampening.',
     features: ['Captain Seats', '5+ Bags', 'Hill Master Driver'],
-    ratePerKm: '17 - 19',
     featured: true,
   },
   {
@@ -200,7 +197,6 @@ export const fallbackVehicles = [
     description:
       'Ideal for wedding groups, extended family yatras, and corporate outings with pushback 1x1 recliners, onboard LED & sound system.',
     features: ['12 - 17 Guests', 'Heavy Boot', 'Pushback Seats'],
-    ratePerKm: '24 - 28',
     featured: false,
   },
 ];
@@ -215,8 +211,6 @@ export const fallbackDestinations = [
     image: 'https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1200&q=80',
     description:
       'Via Nangal & Ropar bypass. Direct cab service to Chandigarh International Airport, PGI Hospital, Sector 17, and IT Park.',
-    approxFare: '2,200 - 2,500',
-    fareLabel: 'Approx. Sedan Fare',
   },
   {
     _id: 'fallback-del',
@@ -227,8 +221,6 @@ export const fallbackDestinations = [
     image: 'https://images.unsplash.com/photo-1585506942812-e72b29cef752?auto=format&fit=crop&w=1200&q=80',
     description:
       'Smooth NH-44 highway express route. Direct drop at IGI Terminal 1/2/3, New Delhi Railway Station, Gurgaon or Noida.',
-    approxFare: '5,400 - 5,900',
-    fareLabel: 'Approx. Sedan Fare',
   },
   {
     _id: 'fallback-shimla',
@@ -239,8 +231,6 @@ export const fallbackDestinations = [
     image: '/images/destinations/shimla.jpg',
     description:
       'Ascend to the Queen of Hills via Bilaspur / Solan route. Drop to Mall Road lifts, Lakkar Bazaar, and high-altitude Kufri resorts.',
-    approxFare: '3,600 - 4,000',
-    fareLabel: 'Approx. Sedan Fare',
   },
   {
     _id: 'fallback-manali',
@@ -251,8 +241,6 @@ export const fallbackDestinations = [
     image: '/images/destinations/manali.jpg',
     description:
       'Scenic route via Bilaspur, Mandi and Kullu valley along the Beas river to the adventure capital of Himachal.',
-    approxFare: '5,800 - 6,300',
-    fareLabel: 'Approx. Sedan Fare',
   },
   {
     _id: 'fallback-chintpurni',
@@ -263,8 +251,6 @@ export const fallbackDestinations = [
     image: 'https://images.unsplash.com/photo-1561361058-c24cecae35ca?auto=format&fit=crop&w=1200&q=80',
     description:
       'Dedicated roundtrip darshan taxi with waiting time included. Optional extension to Jwala Ji, Kangra Devi, and Chamunda Devi temples.',
-    approxFare: '1,600 - 1,900',
-    fareLabel: 'Roundtrip Package',
   },
   {
     _id: 'fallback-dalhousie',
@@ -275,8 +261,6 @@ export const fallbackDestinations = [
     image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80',
     description:
       'Breathtaking cedar forests, emerald Khajjiar lake, Kalatop wildlife sanctuary, and colonial churches.',
-    approxFare: '4,500 - 4,900',
-    fareLabel: 'Approx. Sedan Fare',
   },
 ];
 
@@ -289,8 +273,6 @@ export const fallbackTourPackages = [
     image: '/images/destinations/shimla.jpg',
     description:
       'Includes Mall Road, Christ Church, Jakhu Temple ropeway, Kufri snow amusement park, and green valley viewpoints.',
-    price: '8,500',
-    priceNote: 'total',
   },
   {
     _id: 'fallback-manali-tour',
@@ -300,8 +282,6 @@ export const fallbackTourPackages = [
     image: '/images/destinations/manali.jpg',
     description:
       'Covers Solang Valley paragliding, Atal Tunnel, Sissu waterfalls, Hadimba Temple, and Vashisht hot springs.',
-    price: '13,500',
-    priceNote: 'total',
   },
   {
     _id: 'fallback-dharamshala-tour',
@@ -311,8 +291,6 @@ export const fallbackTourPackages = [
     image: 'https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1200&q=80',
     description:
       'Visit Tsuglagkhang complex, Norbulingka Institute, scenic HPCA Cricket Stadium, Bhagsu Nag, and Kangra Fort.',
-    price: '7,800',
-    priceNote: 'total',
   },
   {
     _id: 'fallback-dalhousie-tour',
@@ -322,8 +300,6 @@ export const fallbackTourPackages = [
     image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=80',
     description:
       'Explore Khajjiar meadows, Kalatop Sanctuary, Chamera Lake, and colonial-era churches of Dalhousie.',
-    price: '9,200',
-    priceNote: 'total',
   },
 ];
 
@@ -342,7 +318,7 @@ export const fallbackReviews = [
     tag: 'Airport Transfer IXC • Verified Passenger',
     rating: 5,
     comment:
-      'Booked an early morning airport drop to Chandigarh. The cab arrived on time and the fare matched exactly what was quoted on WhatsApp.',
+      'Booked an early morning airport drop to Chandigarh. The cab arrived right on time and the service was totally seamless with zero hassles.',
   },
   {
     _id: 'fallback-review-3',
@@ -350,7 +326,7 @@ export const fallbackReviews = [
     tag: 'Ludhiana • Pilgrimage Yatra',
     rating: 5,
     comment:
-      'Best taxi desk inside ISBT Una. We arrived by train and wanted an immediate cab to Chintpurni temple. They offered an honest fixed price without haggling.',
+      'Best taxi desk inside ISBT Una. We arrived by train and wanted an immediate cab to Chintpurni temple. They offered an honest, courteous service without any hassle.',
   },
 ];
 

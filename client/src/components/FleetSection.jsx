@@ -77,10 +77,10 @@ const FleetSection = ({ limit, showHeading = true }) => {
                 </div>
               </div>
 
-              <div className="p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between gap-2">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block tracking-wider">Estimated Fare</span>
-                  <span className="text-xs font-bold text-emerald-700">Contact for Best Price</span>
+              <div className="p-5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between gap-2">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                  <Icon name="verified" className="text-emerald-600 text-[16px]" />
+                  <span>Verified &amp; Sanitized</span>
                 </div>
                 <a
                   href={waLink(`Booking inquiry for ${v.name} from ISBT Una`, settings.whatsapp)}

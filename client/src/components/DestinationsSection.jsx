@@ -22,11 +22,11 @@ const DestinationsSection = ({ limit, showHeading = true }) => {
           <SectionHeading
             eyebrow="Popular Routes from ISBT Una"
             title="Where Can We Take You?"
-            description="Fixed fare quotes, state hill permits handled, and punctual doorstep pickup throughout District Una and beyond."
+            description="Reliable point-to-point transfers, state hill permits handled, and punctual doorstep pickup throughout District Una and beyond."
             action={
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-800">
                 <Icon name="route" className="text-emerald-600 text-[18px]" />
-                <span>All NH / SH Tolls &amp; State Border Taxes Pre-Calculated</span>
+                <span>Permits, Hill Driving &amp; Route Guidance Pre-Planned</span>
               </div>
             }
           />
@@ -83,10 +83,10 @@ const DestinationsSection = ({ limit, showHeading = true }) => {
                 </div>
               </div>
 
-              <div className="p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block tracking-wider">Fare Quote</span>
-                  <span className="text-xs font-bold text-emerald-700">Contact for Best Price</span>
+              <div className="p-5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                  <Icon name="navigation" className="text-secondary text-[16px]" />
+                  <span>On-Demand Pickup</span>
                 </div>
                 <div className="flex items-center gap-2">
                   {d.mapLink && (

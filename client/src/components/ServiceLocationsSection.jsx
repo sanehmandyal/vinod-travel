@@ -15,7 +15,7 @@ const ServiceLocationsSection = () => {
         <SectionHeading
           eyebrow="Regional Reach & Station Desks"
           title="Major Taxi Hubs & Service Areas"
-          description="Dedicated counter desks and rapid 24/7 platform reporting across Himachal Pradesh and Punjab border corridors. Choose your pickup location for local fares and instant booking."
+          description="Dedicated counter desks and rapid 24/7 platform reporting across Himachal Pradesh and Punjab border corridors. Choose your pickup location for direct connectivity and instant booking."
         />
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
@@ -71,8 +71,9 @@ const ServiceLocationsSection = () => {
                         <div className="text-[11px] text-slate-500">{topRoute.distance} • {topRoute.duration}</div>
                       </div>
                       <div className="text-right">
-                        <div className="font-bold text-emerald-700">{topRoute.sedanFare}</div>
-                        <div className="text-[10px] text-slate-400">Sedan approx</div>
+                        <span className="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-md">
+                          <Icon name="verified" className="text-[13px]" /> 24/7 Available
+                        </span>
                       </div>
                     </div>
                   )}
@@ -84,7 +85,7 @@ const ServiceLocationsSection = () => {
                     to={`/${loc.slug}`}
                     className="inline-flex items-center gap-1.5 text-xs font-bold text-primary group-hover:text-secondary transition-colors"
                   >
-                    <span>View All Routes &amp; Fares</span>
+                    <span>View Station &amp; Route Info</span>
                     <Icon name="arrow_forward" className="text-[14px] group-hover:translate-x-1 transition-transform" />
                   </Link>
 

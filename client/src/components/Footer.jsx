@@ -61,7 +61,7 @@ const Footer = () => {
             <li>
               <a href="/fleet" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
                 <Icon name="chevron_right" className="text-[14px] text-secondary" />
-                <span>Fleet &amp; Per Km Rates</span>
+                <span>Fleet &amp; Vehicle Options</span>
               </a>
             </li>
             <li>
@@ -200,7 +200,7 @@ const Footer = () => {
         <p>© {new Date().getFullYear()} {settings.businessName || settings.name}. Regd. Desk: {settings.location}. All rights reserved.</p>
         <div className="flex items-center gap-6">
           <span className="hover:text-primary transition-colors cursor-pointer">Privacy Policy</span>
-          <span className="hover:text-primary transition-colors cursor-pointer">Terms &amp; Fare Policies</span>
+          <span className="hover:text-primary transition-colors cursor-pointer">Terms &amp; Booking Policies</span>
           <span className="hover:text-primary transition-colors cursor-pointer">Safety Protocols</span>
         </div>
       </div>

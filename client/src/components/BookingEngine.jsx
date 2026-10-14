@@ -96,7 +96,7 @@ const BookingEngine = ({
             </span>
             <span className="hidden md:inline-flex items-center gap-1.5 text-amber-800 bg-amber-50 px-3 py-1.5 rounded-full border border-amber-200">
               <Icon name="shield" className="text-[16px] text-amber-600" />
-              <span>Zero Surge Pricing</span>
+              <span>Guaranteed Booking</span>
             </span>
           </div>
         </div>

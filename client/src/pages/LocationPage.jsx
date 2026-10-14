@@ -225,19 +225,19 @@ const LocationPage = ({ locationSlug }) => {
         </div>
       </section>
 
-      {/* Route & Transparent Fare Matrix */}
+      {/* Route & Travel Directory */}
       <section className="py-16 bg-white border-y border-slate-200">
         <div className="max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop space-y-10">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
             <div>
               <span className="text-xs font-bold uppercase tracking-widest text-secondary font-label-sm">
-                Transparent Rate Card
+                Direct Connectivity
               </span>
               <h2 className="text-2xl sm:text-3xl font-bold text-primary font-headline-md tracking-tight">
-                Popular Cab Routes &amp; Fares from {location.shortName}
+                Popular Travel Routes from {location.shortName}
               </h2>
               <p className="text-sm text-slate-600 mt-1">
-                Fixed one-way fares with all hill permits, state border road taxes, and driver charges included.
+                Direct outstation cabs, railway connections, airport transfers, and pilgrimage circuits with licensed hill drivers.
               </p>
             </div>
             <a
@@ -245,7 +245,7 @@ const LocationPage = ({ locationSlug }) => {
               className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold text-xs shadow-sm hover:bg-secondary transition-all whitespace-nowrap self-start md:self-auto"
             >
               <Icon name="call" className="text-[16px]" />
-              <span>Get Custom Route Quote</span>
+              <span>Get Immediate Cab Quote</span>
             </a>
           </div>
 
@@ -253,12 +253,11 @@ const LocationPage = ({ locationSlug }) => {
             <table className="w-full text-left border-collapse text-sm">
               <thead>
                 <tr className="bg-slate-100/80 text-slate-700 font-bold border-b border-slate-200 text-xs uppercase tracking-wider">
-                  <th className="py-3.5 px-4">Destination</th>
-                  <th className="py-3.5 px-4">Distance / Time</th>
-                  <th className="py-3.5 px-4">AC Sedan (Dzire)</th>
-                  <th className="py-3.5 px-4">AC SUV (Ertiga)</th>
-                  <th className="py-3.5 px-4">Luxury Innova Crysta</th>
-                  <th className="py-3.5 px-4">Tempo (12-17)</th>
+                  <th className="py-3.5 px-4">Destination &amp; Route</th>
+                  <th className="py-3.5 px-4">Distance</th>
+                  <th className="py-3.5 px-4">Travel Time</th>
+                  <th className="py-3.5 px-4">Vehicle Options</th>
+                  <th className="py-3.5 px-4">Status</th>
                   <th className="py-3.5 px-4 text-center">Action</th>
                 </tr>
               </thead>
@@ -269,26 +268,34 @@ const LocationPage = ({ locationSlug }) => {
                       <div>{r.destination}</div>
                       <div className="text-[11px] font-normal text-slate-500 mt-0.5">{r.routeInfo}</div>
                     </td>
-                    <td className="py-3.5 px-4 whitespace-nowrap">
-                      <div className="font-semibold text-slate-800">{r.distance}</div>
-                      <div className="text-xs text-slate-500">{r.duration}</div>
+                    <td className="py-3.5 px-4 whitespace-nowrap font-semibold text-slate-800">
+                      {r.distance}
                     </td>
-                    <td className="py-3.5 px-4 font-semibold text-emerald-800 whitespace-nowrap">{r.sedanFare}</td>
-                    <td className="py-3.5 px-4 font-semibold text-slate-900 whitespace-nowrap">{r.suvFare}</td>
-                    <td className="py-3.5 px-4 font-semibold text-primary whitespace-nowrap">{r.crystaFare}</td>
-                    <td className="py-3.5 px-4 font-semibold text-slate-800 whitespace-nowrap">{r.tempoFare}</td>
+                    <td className="py-3.5 px-4 whitespace-nowrap text-slate-600 font-medium">
+                      {r.duration}
+                    </td>
+                    <td className="py-3.5 px-4 whitespace-nowrap text-xs text-slate-600">
+                      <span className="bg-slate-100 px-2.5 py-1 rounded-md text-slate-700 font-medium">
+                        {r.cabOptions || 'Sedan / SUV / Innova'}
+                      </span>
+                    </td>
+                    <td className="py-3.5 px-4 whitespace-nowrap">
+                      <span className="inline-flex items-center gap-1 font-semibold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full text-xs">
+                        <Icon name="check_circle" className="text-[14px]" /> 24/7 Available
+                      </span>
+                    </td>
                     <td className="py-3.5 px-4 text-center whitespace-nowrap">
                       <a
                         href={waLink(
-                          `Hello Vinod Travels, I want to book a cab from ${location.shortName} to ${r.destination}.`,
+                          `Hello Vinod Travels, I need a quote for a cab from ${location.shortName} to ${r.destination}.`,
                           settings.whatsapp
                         )}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm"
+                        className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold transition-all shadow-sm"
                       >
                         <Icon name="chat" className="text-[14px]" />
-                        <span>Book</span>
+                        <span>Get Quote</span>
                       </a>
                     </td>
                   </tr>
@@ -421,7 +428,7 @@ const LocationPage = ({ locationSlug }) => {
             Frequently Asked Questions for {location.shortName} Cabs
           </h2>
           <p className="text-sm text-slate-600 font-body-sm">
-            Everything you need to know about station pickups, rates, permits, and cancellations.
+            Everything you need to know about station pickups, vehicle choices, permits, and booking.
           </p>
         </div>
 
@@ -484,7 +491,7 @@ const LocationPage = ({ locationSlug }) => {
                   {other.shortName}
                 </span>
                 <span className="text-[10px] text-slate-500 group-hover:text-emerald-100 transition-colors">
-                  View Rates &rarr;
+                  View Routes &rarr;
                 </span>
               </Link>
             ))}

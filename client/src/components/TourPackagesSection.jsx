@@ -67,19 +67,19 @@ const TourPackagesSection = ({ limit, showHeading = true }) => {
                 </div>
               </div>
 
-              <div className="p-5 bg-slate-50 border-t border-slate-100 flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-slate-500 block tracking-wider">Starting From Una</span>
-                  <span className="text-xs font-bold text-emerald-700">Contact for Custom Quote</span>
+              <div className="p-5 bg-slate-50/80 border-t border-slate-100 flex items-center justify-between">
+                <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-600">
+                  <Icon name="explore" className="text-secondary text-[16px]" />
+                  <span>Custom Itinerary</span>
                 </div>
                 <a
                   href={waLink(`Inquiry for ${t.title} (${t.duration}) from Una`, settings.whatsapp)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl bg-primary text-white hover:bg-secondary transition-all font-bold text-xs shadow-sm hover:shadow-md"
+                  className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-primary text-white hover:bg-secondary transition-all font-bold text-xs shadow-sm hover:shadow-md"
                 >
-                  <span>Book</span>
-                  <Icon name="send" className="text-[16px]" />
+                  <span>Plan Trip</span>
+                  <Icon name="arrow_forward" className="text-[14px]" />
                 </a>
               </div>
             </div>
