@@ -48,6 +48,8 @@ const allowedOrigins = [
   'http://127.0.0.1:5174',
   'https://vinod-tour-travel.vercel.app',
   'https://vinod-travel.vercel.app',
+  'https://www.unatourtravels.co.in',
+  'https://unatourtravels.co.in',
 ];
 if (process.env.CLIENT_URL) {
   process.env.CLIENT_URL.split(',').forEach((url) => {

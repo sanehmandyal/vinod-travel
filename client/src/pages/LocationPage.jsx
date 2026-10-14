@@ -14,16 +14,21 @@ const LocationPage = ({ locationSlug }) => {
   const { data: settings } = useSettings();
   const [openFaq, setOpenFaq] = useState(0);
 
+  const baseUrl =
+    typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost')
+      ? window.location.origin
+      : 'https://www.unatourtravels.co.in';
+
   // Generate Google Schema.org JSON-LD structured data
   const taxiSchema = {
     '@context': 'https://schema.org',
-    '@type': 'TaxiService',
-    '@id': `https://vinod-tour-travel.vercel.app/${location.slug}#service`,
+    '@type': ['TaxiService', 'TravelAgency'],
+    '@id': `${baseUrl}/${location.slug}#service`,
     name: `${location.shortName} Taxi Service - Vinod Tour & Travels`,
-    url: `https://vinod-tour-travel.vercel.app/${location.slug}`,
+    url: `${baseUrl}/${location.slug}`,
     telephone: settings.phonePrimary || '+916230521544',
     priceRange: '₹₹',
-    image: `https://vinod-tour-travel.vercel.app${location.heroImage}`,
+    image: `${baseUrl}${location.heroImage}`,
     description: location.metaDescription,
     address: {
       '@type': 'PostalAddress',
@@ -49,11 +54,6 @@ const LocationPage = ({ locationSlug }) => {
         closes: '23:59',
       },
     ],
-    aggregateRating: {
-      '@type': 'AggregateRating',
-      ratingValue: '4.9',
-      reviewCount: '158',
-    },
   };
 
   const breadcrumbSchema = {
@@ -64,19 +64,19 @@ const LocationPage = ({ locationSlug }) => {
         '@type': 'ListItem',
         position: 1,
         name: 'Home',
-        item: 'https://vinod-tour-travel.vercel.app/',
+        item: `${baseUrl}/`,
       },
       {
         '@type': 'ListItem',
         position: 2,
         name: 'Service Areas',
-        item: 'https://vinod-tour-travel.vercel.app/services',
+        item: `${baseUrl}/services`,
       },
       {
         '@type': 'ListItem',
         position: 3,
         name: location.title,
-        item: `https://vinod-tour-travel.vercel.app/${location.slug}`,
+        item: `${baseUrl}/${location.slug}`,
       },
     ],
   };

@@ -4,5 +4,5 @@ Disallow: /admin/
 Disallow: /api/
 
 # Host and Sitemap declaration for Googlebot & search crawlers
-Host: https://vinod-tour-travel.vercel.app
-Sitemap: https://vinod-tour-travel.vercel.app/sitemap.xml
+Host: https://www.unatourtravels.co.in
+Sitemap: https://www.unatourtravels.co.in/sitemap.xml

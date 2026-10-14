@@ -1,6 +1,14 @@
 import { useEffect } from 'react';
 
-const SITE_URL = 'https://vinod-tour-travel.vercel.app';
+const DEFAULT_SITE_URL = 'https://www.unatourtravels.co.in';
+const getSiteUrl = () => {
+  if (typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost')) {
+    return window.location.origin;
+  }
+  return DEFAULT_SITE_URL;
+};
+
+const SITE_URL = getSiteUrl();
 const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
 const DEFAULT_TITLE = 'Vinod Tour & Travels | #1 Taxi Service in Una Himachal | 24/7 Cab Booking ISBT Una';
 const DEFAULT_DESC =
