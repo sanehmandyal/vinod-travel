@@ -44,38 +44,140 @@ const Footer = () => {
         </div>
 
         <div className="space-y-space-md">
-          <h3 className="font-title-lg text-title-lg text-primary tracking-tight">Quick Links</h3>
+          <h3 className="font-title-lg text-title-lg text-primary tracking-tight font-bold">Quick Links</h3>
           <ul className="space-y-space-xs font-body-sm text-body-sm">
-            {quickLinks.map((item) => (
-              <li key={item} className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+            <li>
+              <a href="/#booking-card" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
                 <Icon name="chevron_right" className="text-[14px] text-secondary" />
-                {item}
-              </li>
-            ))}
+                <span>Instant Cab Booking</span>
+              </a>
+            </li>
+            <li>
+              <a href="/services" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Local &amp; Outstation Services</span>
+              </a>
+            </li>
+            <li>
+              <a href="/fleet" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Fleet &amp; Per Km Rates</span>
+              </a>
+            </li>
+            <li>
+              <a href="/destinations" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Popular Travel Routes</span>
+              </a>
+            </li>
+            <li>
+              <a href="/tour-packages" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Himachal Tour Packages</span>
+              </a>
+            </li>
+            <li>
+              <a href="/reviews" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Customer Reviews</span>
+              </a>
+            </li>
+            <li>
+              <a href="/contact" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="chevron_right" className="text-[14px] text-secondary" />
+                <span>Contact &amp; ISBT Office</span>
+              </a>
+            </li>
           </ul>
         </div>
 
         <div className="space-y-space-md">
-          <h3 className="font-title-lg text-title-lg text-primary tracking-tight">Popular Routes</h3>
+          <h3 className="font-title-lg text-title-lg text-primary tracking-tight font-bold">Taxi Hubs &amp; Stations</h3>
           <ul className="space-y-space-xs font-body-sm text-body-sm">
-            {popularRouteLinks.map((item) => (
-              <li key={item} className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
-                <Icon name="navigation" className="text-[14px] text-secondary" />
-                {item}
-              </li>
-            ))}
-          </ul>
-        </div>
-
-        <div className="space-y-space-md">
-          <h3 className="font-title-lg text-title-lg text-primary tracking-tight">Our Fleet</h3>
-          <ul className="space-y-space-xs font-body-sm text-body-sm">
-            {fleetHighlights.map((item) => (
-              <li key={item} className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+            <li>
+              <a href="/taxi-service-in-una" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="location_on" className="text-[14px] text-secondary" />
+                <span>Taxi in Una (ISBT Counter)</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-amb-andaura" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="train" className="text-[14px] text-secondary" />
+                <span>Taxi in Amb Andaura (Vande Bharat)</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-nangal" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
                 <Icon name="local_taxi" className="text-[14px] text-secondary" />
-                {item}
-              </li>
-            ))}
+                <span>Taxi in Nangal Dam &amp; Station</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-anandpur-sahib" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="temple_buddhist" className="text-[14px] text-secondary" />
+                <span>Taxi in Anandpur Sahib (Takht Kesgarh)</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-dharamshala" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="landscape" className="text-[14px] text-secondary" />
+                <span>Taxi in Dharamshala &amp; McLeodganj</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-gagal-airport" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="flight" className="text-[14px] text-secondary" />
+                <span>Gaggal Airport (Kangra IXG) Cab</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-daulatpur-chowk" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="route" className="text-[14px] text-secondary" />
+                <span>Taxi in Daulatpur Chowk Station</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div className="space-y-space-md">
+          <h3 className="font-title-lg text-title-lg text-primary tracking-tight font-bold">Popular Routes</h3>
+          <ul className="space-y-space-xs font-body-sm text-body-sm">
+            <li>
+              <a href="/taxi-service-in-una" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="navigation" className="text-[14px] text-secondary" />
+                <span>Una to Chandigarh Airport Cab</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-una" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="navigation" className="text-[14px] text-secondary" />
+                <span>Una to Delhi IGI Airport Cab</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-amb-andaura" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="navigation" className="text-[14px] text-secondary" />
+                <span>Amb to Chintpurni Shrine Cab</span>
+              </a>
+            </li>
+            <li>
+              <a href="/taxi-service-in-nangal" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="navigation" className="text-[14px] text-secondary" />
+                <span>Nangal to Naina Devi Yatra Cab</span>
+              </a>
+            </li>
+            <li>
+              <a href="/tour-packages" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="navigation" className="text-[14px] text-secondary" />
+                <span>Shimla &amp; Manali Holiday Tour</span>
+              </a>
+            </li>
+            <li>
+              <a href="/fleet" className="flex items-center gap-1.5 text-on-surface-variant hover:text-primary transition-colors">
+                <Icon name="local_taxi" className="text-[14px] text-secondary" />
+                <span>Toyota Innova Crysta &amp; Ertiga</span>
+              </a>
+            </li>
           </ul>
         </div>
       </div>

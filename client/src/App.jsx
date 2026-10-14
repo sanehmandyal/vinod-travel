@@ -13,6 +13,7 @@ import TourPackages from './pages/TourPackages';
 import Gallery from './pages/Gallery';
 import Reviews from './pages/Reviews';
 import Contact from './pages/Contact';
+import LocationPage from './pages/LocationPage';
 import NotFound from './pages/NotFound';
 
 import AdminLogin from './pages/admin/Login';
@@ -47,6 +48,32 @@ function App() {
       <Route path="/gallery" element={<PublicLayout><Gallery /></PublicLayout>} />
       <Route path="/reviews" element={<PublicLayout><Reviews /></PublicLayout>} />
       <Route path="/contact" element={<PublicLayout><Contact /></PublicLayout>} />
+
+      {/* High-Intent Local SEO Landing Pages */}
+      <Route path="/taxi-service-in-una" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-una" /></PublicLayout>} />
+      <Route path="/taxi-una" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-una" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-amb-andaura" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-amb-andaura" /></PublicLayout>} />
+      <Route path="/taxi-amb-andaura" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-amb-andaura" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-nangal" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-nangal" /></PublicLayout>} />
+      <Route path="/taxi-nangal" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-nangal" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-anandpur-sahib" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-anandpur-sahib" /></PublicLayout>} />
+      <Route path="/taxi-anandpur-sahib" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-anandpur-sahib" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-dharamshala" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-dharamshala" /></PublicLayout>} />
+      <Route path="/taxi-dharamshala" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-dharamshala" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-gagal-airport" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-gagal-airport" /></PublicLayout>} />
+      <Route path="/taxi-service-in-gaggal-airport" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-gagal-airport" /></PublicLayout>} />
+      <Route path="/taxi-gagal-airport" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-gagal-airport" /></PublicLayout>} />
+      <Route path="/taxi-gaggal-airport" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-gagal-airport" /></PublicLayout>} />
+
+      <Route path="/taxi-service-in-daulatpur-chowk" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-daulatpur-chowk" /></PublicLayout>} />
+      <Route path="/taxi-daulatpur-chowk" element={<PublicLayout><LocationPage locationSlug="taxi-service-in-daulatpur-chowk" /></PublicLayout>} />
+
+      <Route path="/locations/:slug" element={<PublicLayout><LocationPage /></PublicLayout>} />
 
       {/* Admin */}
       <Route path="/admin/login" element={<AdminLogin />} />

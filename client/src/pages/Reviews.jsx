@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import SEO from '../components/SEO';
 import PageHeader from '../components/PageHeader';
 import ReviewsSection from '../components/ReviewsSection';
 import Icon from '../components/Icon';
@@ -26,6 +27,17 @@ const Reviews = () => {
 
   return (
     <>
+      <SEO
+        title="Verified Customer Reviews & Ratings | Vinod Tour & Travels Una"
+        description="Read authentic customer reviews and feedback for Vinod Tour & Travels Una. 4.9-star rated taxi and tour service across Himachal and Punjab. Call +91 62305 21544."
+        keywords={[
+          'vinod tour and travels reviews',
+          'taxi service una reviews',
+          'best cab service in una himachal',
+          'tour operator una ratings',
+        ]}
+        canonical="/reviews"
+      />
       <PageHeader
         eyebrow="Real Passenger Feedback"
         title="Passenger Reviews"

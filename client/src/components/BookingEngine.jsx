@@ -12,12 +12,17 @@ const vehicleOptions = [
   'Tempo Traveller (12 / 17 Seater)',
 ];
 
-const BookingEngine = () => {
+const BookingEngine = ({
+  initialPickup = 'Una / ISBT Una, HP',
+  initialDestination = '',
+  className = '',
+  embedded = false,
+}) => {
   const { data: settings } = useSettings();
   const [tripType, setTripType] = useState('One Way');
   const [form, setForm] = useState({
-    pickup: 'Una / ISBT Una, HP',
-    destination: '',
+    pickup: initialPickup,
+    destination: initialDestination,
     date: '',
     vehicle: vehicleOptions[2],
     name: '',
@@ -59,7 +64,10 @@ const BookingEngine = () => {
   return (
     <section
       id="booking-card"
-      className="relative z-20 max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop -mt-10 lg:-mt-16 w-full"
+      className={
+        className ||
+        'relative z-20 max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop -mt-10 lg:-mt-16 w-full'
+      }
     >
       <div className="rounded-3xl bg-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.15)] border border-slate-100 p-6 lg:p-8 text-on-surface">
         {/* Top bar with Trip Type Selector and Trust Badges */}

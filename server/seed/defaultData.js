@@ -329,6 +329,12 @@ const seedIfEmpty = async () => {
       console.log(`Auto-seeded ${defaultVehicles.length} default vehicles.`);
     }
 
+    const bCount = await Booking.countDocuments();
+    if (bCount === 0) {
+      await Booking.insertMany(defaultBookings);
+      console.log(`Auto-seeded ${defaultBookings.length} default bookings.`);
+    }
+
     const dCount = await Destination.countDocuments();
     if (dCount === 0) {
       await Destination.insertMany(defaultDestinations);
@@ -370,6 +376,7 @@ const forceSeed = async () => {
     TourPackage.deleteMany(),
     GalleryItem.deleteMany(),
     Review.deleteMany(),
+    Booking.deleteMany(),
   ]);
 
   await Vehicle.insertMany(defaultVehicles);
@@ -377,6 +384,7 @@ const forceSeed = async () => {
   await TourPackage.insertMany(defaultTourPackages);
   await GalleryItem.insertMany(defaultGalleryItems);
   await Review.insertMany(defaultReviews);
+  await Booking.insertMany(defaultBookings);
 
   const existingSettings = await Settings.findOne();
   if (!existingSettings) {
@@ -392,10 +400,12 @@ const forceSeed = async () => {
     tourPackages: defaultTourPackages.length,
     galleryItems: defaultGalleryItems.length,
     reviews: defaultReviews.length,
+    bookings: defaultBookings.length,
   };
 };
 
 module.exports = {
+  defaultBookings,
   defaultVehicles,
   defaultDestinations,
   defaultTourPackages,

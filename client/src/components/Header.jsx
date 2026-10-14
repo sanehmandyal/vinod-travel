@@ -4,8 +4,19 @@ import Icon from './Icon';
 import { navLinks, waLink } from '../data/siteConfig';
 import { useSettings } from '../hooks';
 
+const headerLocations = [
+  { label: 'Una (ISBT & Railway Station)', to: '/taxi-service-in-una', desc: 'Direct bus stand & station pickups' },
+  { label: 'Amb Andaura (Vande Bharat)', to: '/taxi-service-in-amb-andaura', desc: 'Platform pickup for Train 22447/22448' },
+  { label: 'Nangal Dam & Station', to: '/taxi-service-in-nangal', desc: 'Cabs to Una, Naina Devi & Chandigarh' },
+  { label: 'Anandpur Sahib (Holy City)', to: '/taxi-service-in-anandpur-sahib', desc: 'Takht Kesgarh Sahib & Virasat-e-Khalsa' },
+  { label: 'Dharamshala & McLeodganj', to: '/taxi-service-in-dharamshala', desc: 'Kangra valley & HPCA Stadium cabs' },
+  { label: 'Gaggal Airport (Kangra IXG)', to: '/taxi-service-in-gagal-airport', desc: 'Direct flight arrival gate pickups' },
+  { label: 'Daulatpur Chowk Station', to: '/taxi-service-in-daulatpur-chowk', desc: 'Northern terminus for Chintpurni & Talwara' },
+];
+
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [locationsOpen, setLocationsOpen] = useState(false);
   const { data: settings } = useSettings();
 
   return (
@@ -74,7 +85,7 @@ const Header = () => {
           </div>
         </Link>
 
-        <nav className="hidden xl:flex items-center gap-3.5 2xl:gap-5">
+        <nav className="hidden xl:flex items-center gap-3 2xl:gap-4.5">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -91,6 +102,46 @@ const Header = () => {
               {link.label}
             </NavLink>
           ))}
+
+          {/* Taxi Hubs Dropdown */}
+          <div
+            className="relative"
+            onMouseEnter={() => setLocationsOpen(true)}
+            onMouseLeave={() => setLocationsOpen(false)}
+          >
+            <button
+              type="button"
+              onClick={() => setLocationsOpen((v) => !v)}
+              className="inline-flex items-center gap-1 text-[13px] 2xl:text-[14px] font-semibold text-slate-700 hover:text-primary hover:font-bold py-1 transition-all whitespace-nowrap"
+            >
+              <span>Taxi Hubs</span>
+              <Icon name={locationsOpen ? 'expand_less' : 'expand_more'} className="text-[16px] text-secondary" />
+            </button>
+
+            {locationsOpen && (
+              <div className="absolute top-full left-0 w-72 bg-white rounded-2xl shadow-xl border border-slate-200 p-2 z-50 animate-in fade-in slide-in-from-top-2 duration-150">
+                <div className="text-[10px] font-bold uppercase tracking-wider text-slate-400 px-3 py-1.5 border-b border-slate-100">
+                  Regional Service Areas
+                </div>
+                <div className="py-1">
+                  {headerLocations.map((loc) => (
+                    <Link
+                      key={loc.to}
+                      to={loc.to}
+                      onClick={() => setLocationsOpen(false)}
+                      className="flex flex-col px-3 py-2 rounded-xl hover:bg-slate-50 transition-colors group"
+                    >
+                      <span className="text-xs font-bold text-slate-800 group-hover:text-primary transition-colors flex items-center justify-between">
+                        {loc.label}
+                        <Icon name="chevron_right" className="text-[14px] text-slate-400 group-hover:text-primary transition-colors" />
+                      </span>
+                      <span className="text-[10px] text-slate-500 line-clamp-1">{loc.desc}</span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
         </nav>
 
         <div className="flex items-center gap-2 sm:gap-3 shrink-0">
@@ -126,7 +177,7 @@ const Header = () => {
 
       {/* Mobile nav */}
       {menuOpen && (
-        <nav id="mobile-navigation" className="xl:hidden bg-surface-container-lowest border-t border-surface-container px-gutter-mobile py-space-md flex flex-col gap-space-sm shadow-xl">
+        <nav id="mobile-navigation" className="xl:hidden bg-surface-container-lowest border-t border-surface-container px-gutter-mobile py-space-md flex flex-col gap-space-sm shadow-xl max-h-[80vh] overflow-y-auto">
           {navLinks.map((link) => (
             <NavLink
               key={link.to}
@@ -142,6 +193,27 @@ const Header = () => {
               {link.label}
             </NavLink>
           ))}
+
+          {/* Mobile Taxi Hubs Section */}
+          <div className="pt-2 border-t border-surface-container">
+            <div className="text-xs font-bold text-slate-400 uppercase tracking-wider px-2 py-1">
+              Taxi Hubs &amp; Stations
+            </div>
+            <div className="grid grid-cols-1 gap-1 pt-1">
+              {headerLocations.map((loc) => (
+                <Link
+                  key={loc.to}
+                  to={loc.to}
+                  onClick={() => setMenuOpen(false)}
+                  className="flex items-center justify-between px-3 py-2 rounded-lg text-xs font-semibold text-slate-700 hover:bg-surface-container hover:text-primary transition-colors"
+                >
+                  <span>{loc.label}</span>
+                  <Icon name="chevron_right" className="text-[14px] text-slate-400" />
+                </Link>
+              ))}
+            </div>
+          </div>
+
           <div className="pt-3 border-t border-surface-container mt-1">
             <Link
               to="/admin/login"
