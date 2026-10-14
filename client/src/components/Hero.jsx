@@ -17,8 +17,10 @@ const Hero = () => {
       {/* Background with real mountain imagery */}
       <div className="absolute inset-0 z-0">
         <img
-          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=85"
+          src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1280&q=75&fm=webp"
           alt="Himachal Mountains"
+          fetchPriority="high"
+          decoding="async"
           className="w-full h-full object-cover object-center scale-105 filter brightness-75"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#03150e]/95 via-[#03150e]/85 to-[#03150e]/60" />

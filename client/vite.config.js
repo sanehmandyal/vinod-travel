@@ -12,4 +12,16 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    chunkSizeWarningLimit: 800,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom', 'react-router-dom', 'axios'],
+        },
+      },
+    },
+  },
 });

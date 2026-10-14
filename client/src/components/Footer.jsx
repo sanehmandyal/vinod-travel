@@ -12,8 +12,12 @@ const Footer = () => {
         <div className="lg:col-span-2 space-y-space-md">
           <div className="flex items-center gap-space-sm">
             <img
-              src="/logo.png"
+              src="/logo-sm.png"
               alt={settings.businessName || 'Vinod Tour and Travels'}
+              width="44"
+              height="44"
+              loading="lazy"
+              decoding="async"
               className="w-11 h-11 rounded-full object-cover shrink-0 shadow-md ring-2 ring-secondary/30"
             />
             <span className="font-headline-sm text-headline-sm text-primary font-bold">{settings.businessName || settings.name}</span>

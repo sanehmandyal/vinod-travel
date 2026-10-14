@@ -1,36 +1,46 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 
 import Header from './components/Header';
 import Footer, { WhatsAppFloatButton } from './components/Footer';
 import ProtectedRoute from './components/ProtectedRoute';
 
+// Home is kept eager so the landing page renders with zero bundle waterfall
 import Home from './pages/Home';
-import Services from './pages/Services';
-import Fleet from './pages/Fleet';
-import Destinations from './pages/Destinations';
-import TourPackages from './pages/TourPackages';
-import Gallery from './pages/Gallery';
-import Reviews from './pages/Reviews';
-import Contact from './pages/Contact';
-import LocationPage from './pages/LocationPage';
-import NotFound from './pages/NotFound';
 
-import AdminLogin from './pages/admin/Login';
-import AdminDashboard from './pages/admin/Dashboard';
-import AdminBookings from './pages/admin/Bookings';
-import AdminVehicles from './pages/admin/Vehicles';
-import AdminDestinations from './pages/admin/Destinations';
-import AdminTourPackages from './pages/admin/TourPackages';
-import AdminGallery from './pages/admin/Gallery';
-import AdminReviews from './pages/admin/Reviews';
-import AdminEnquiries from './pages/admin/Enquiries';
-import AdminSettings from './pages/admin/Settings';
+// Public pages loaded lazily on demand
+const Services = lazy(() => import('./pages/Services'));
+const Fleet = lazy(() => import('./pages/Fleet'));
+const Destinations = lazy(() => import('./pages/Destinations'));
+const TourPackages = lazy(() => import('./pages/TourPackages'));
+const Gallery = lazy(() => import('./pages/Gallery'));
+const Reviews = lazy(() => import('./pages/Reviews'));
+const Contact = lazy(() => import('./pages/Contact'));
+const LocationPage = lazy(() => import('./pages/LocationPage'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
+// Admin pages loaded lazily on demand
+const AdminLogin = lazy(() => import('./pages/admin/Login'));
+const AdminDashboard = lazy(() => import('./pages/admin/Dashboard'));
+const AdminBookings = lazy(() => import('./pages/admin/Bookings'));
+const AdminVehicles = lazy(() => import('./pages/admin/Vehicles'));
+const AdminDestinations = lazy(() => import('./pages/admin/Destinations'));
+const AdminTourPackages = lazy(() => import('./pages/admin/TourPackages'));
+const AdminGallery = lazy(() => import('./pages/admin/Gallery'));
+const AdminReviews = lazy(() => import('./pages/admin/Reviews'));
+const AdminEnquiries = lazy(() => import('./pages/admin/Enquiries'));
+const AdminSettings = lazy(() => import('./pages/admin/Settings'));
+
+const PageLoader = () => (
+  <div className="min-h-[50vh] flex items-center justify-center">
+    <div className="w-8 h-8 rounded-full border-2 border-primary border-t-transparent animate-spin" />
+  </div>
+);
 
 const PublicLayout = ({ children }) => (
   <>
     <Header />
-    {children}
+    <Suspense fallback={<PageLoader />}>{children}</Suspense>
     <Footer />
     <WhatsAppFloatButton />
   </>
@@ -76,16 +86,16 @@ function App() {
       <Route path="/locations/:slug" element={<PublicLayout><LocationPage /></PublicLayout>} />
 
       {/* Admin */}
-      <Route path="/admin/login" element={<AdminLogin />} />
-      <Route path="/admin/dashboard" element={<ProtectedRoute><AdminDashboard /></ProtectedRoute>} />
-      <Route path="/admin/bookings" element={<ProtectedRoute><AdminBookings /></ProtectedRoute>} />
-      <Route path="/admin/vehicles" element={<ProtectedRoute><AdminVehicles /></ProtectedRoute>} />
-      <Route path="/admin/destinations" element={<ProtectedRoute><AdminDestinations /></ProtectedRoute>} />
-      <Route path="/admin/tour-packages" element={<ProtectedRoute><AdminTourPackages /></ProtectedRoute>} />
-      <Route path="/admin/gallery" element={<ProtectedRoute><AdminGallery /></ProtectedRoute>} />
-      <Route path="/admin/reviews" element={<ProtectedRoute><AdminReviews /></ProtectedRoute>} />
-      <Route path="/admin/enquiries" element={<ProtectedRoute><AdminEnquiries /></ProtectedRoute>} />
-      <Route path="/admin/settings" element={<ProtectedRoute><AdminSettings /></ProtectedRoute>} />
+      <Route path="/admin/login" element={<Suspense fallback={<PageLoader />}><AdminLogin /></Suspense>} />
+      <Route path="/admin/dashboard" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminDashboard /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/bookings" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminBookings /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/vehicles" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminVehicles /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/destinations" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminDestinations /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/tour-packages" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminTourPackages /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/gallery" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminGallery /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/reviews" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminReviews /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/enquiries" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminEnquiries /></Suspense></ProtectedRoute>} />
+      <Route path="/admin/settings" element={<ProtectedRoute><Suspense fallback={<PageLoader />}><AdminSettings /></Suspense></ProtectedRoute>} />
 
       <Route path="*" element={<PublicLayout><NotFound /></PublicLayout>} />
     </Routes>

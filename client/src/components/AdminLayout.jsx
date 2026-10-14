@@ -29,8 +29,10 @@ const AdminLayout = ({ children, title }) => {
       <aside className="hidden md:flex md:flex-col w-64 bg-primary text-on-primary p-space-md shrink-0">
         <div className="flex items-center gap-2.5 pb-space-lg">
           <img
-            src="/logo.png"
+            src="/logo-sm.png"
             alt="Vinod Travels"
+            width="40"
+            height="40"
             className="w-10 h-10 rounded-full object-cover shrink-0 shadow-md ring-1 ring-white/20"
           />
           <div>

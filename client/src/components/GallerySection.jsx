@@ -22,7 +22,7 @@ const categoryIcon = {
 };
 
 const GallerySection = ({ limit, showHeading = true }) => {
-  const { data: items } = useContent(galleryApi.list, fallbackGallery);
+  const { data: items } = useContent(galleryApi.list, fallbackGallery, 'gallery');
   const [active, setActive] = useState('all');
 
   const filtered = items.filter((g) => active === 'all' || g.category === active);
@@ -65,6 +65,8 @@ const GallerySection = ({ limit, showHeading = true }) => {
               <img
                 src={getGalleryImage(g, idx)}
                 alt={g.caption}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-80 group-hover:opacity-95 transition-opacity p-5 flex flex-col justify-end">

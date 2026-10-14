@@ -7,7 +7,7 @@ import { fallbackVehicles, waLink } from '../data/siteConfig';
 import { getVehicleImage } from '../utils/media';
 
 const FleetSection = ({ limit, showHeading = true }) => {
-  const { data: vehicles } = useContent(vehicleApi.list, fallbackVehicles);
+  const { data: vehicles } = useContent(vehicleApi.list, fallbackVehicles, 'vehicles');
   const { data: settings } = useSettings();
   const list = limit ? vehicles.slice(0, limit) : vehicles;
 
@@ -34,6 +34,8 @@ const FleetSection = ({ limit, showHeading = true }) => {
                   <img
                     src={getVehicleImage(v)}
                     alt={v.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       const name = (v?.name || '').toLowerCase();

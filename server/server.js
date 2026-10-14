@@ -97,7 +97,7 @@ if (process.env.NODE_ENV !== 'production') {
   app.use(morgan('dev'));
 }
 
-// Ensure database connection and admin user before any request is processed
+// Ensure database connection before any request is processed
 let isConnected = false;
 let adminEnsured = false;
 
@@ -106,6 +106,13 @@ app.use(async (req, res, next) => {
     try {
       await connectDB();
       isConnected = true;
+      if (!adminEnsured) {
+        adminEnsured = true;
+        // Non-blocking background initialization so the request returns instantly
+        Promise.all([ensureAdminUser(), seedIfEmpty()]).catch((err) => {
+          console.error('Background init error:', err.message);
+        });
+      }
     } catch (err) {
       console.error('Database connection error in request:', err.message);
       return res.status(503).json({
@@ -114,14 +121,9 @@ app.use(async (req, res, next) => {
     }
   }
 
-  if (isConnected && !adminEnsured) {
-    try {
-      await ensureAdminUser();
-      await seedIfEmpty();
-      adminEnsured = true;
-    } catch (err) {
-      console.error('Admin initialization error:', err.message);
-    }
+  // Add Edge caching for public content queries
+  if (req.method === 'GET' && !req.path.includes('/admin') && !req.path.includes('/auth') && !req.path.includes('/bookings')) {
+    res.setHeader('Cache-Control', 's-maxage=60, stale-while-revalidate=300');
   }
 
   next();

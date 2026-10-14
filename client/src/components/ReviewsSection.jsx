@@ -15,7 +15,7 @@ const initials = (name) =>
     .slice(0, 2);
 
 const ReviewsSection = ({ limit, showHeading = true }) => {
-  const { data: reviews } = useContent(reviewApi.list, fallbackReviews);
+  const { data: reviews } = useContent(reviewApi.list, fallbackReviews, 'reviews');
   const { data: settings } = useSettings();
   const list = limit ? reviews.slice(0, limit) : reviews;
 

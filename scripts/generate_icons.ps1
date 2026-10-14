@@ -16,10 +16,6 @@ Copy-Item $srcPath (Join-Path $imagesDir "logo.jpg") -Force
 $srcBmp = [System.Drawing.Bitmap]::FromFile($srcPath)
 Write-Output "Source Dimensions: $($srcBmp.Width) x $($srcBmp.Height)"
 
-# Save as PNG
-$srcBmp.Save((Join-Path $clientPublic "logo.png"), [System.Drawing.Imaging.ImageFormat]::Png)
-$srcBmp.Save((Join-Path $imagesDir "logo.png"), [System.Drawing.Imaging.ImageFormat]::Png)
-
 function Generate-ResizedImage {
     param (
         [System.Drawing.Image]$Source,
@@ -45,13 +41,20 @@ function Generate-ResizedImage {
     Write-Output "Successfully Generated: $TargetPath ($Width x $Height)"
 }
 
+# Optimized logo for header and footer (96x96 retina, super lightweight ~15KB)
+Generate-ResizedImage -Source $srcBmp -Width 96 -Height 96 -TargetPath (Join-Path $clientPublic "logo-sm.png")
+Generate-ResizedImage -Source $srcBmp -Width 96 -Height 96 -TargetPath (Join-Path $imagesDir "logo-sm.png")
+
+# Main logo (512x512, high quality, ~150KB instead of 760KB)
+Generate-ResizedImage -Source $srcBmp -Width 512 -Height 512 -TargetPath (Join-Path $clientPublic "logo.png")
+Generate-ResizedImage -Source $srcBmp -Width 512 -Height 512 -TargetPath (Join-Path $imagesDir "logo.png")
+
+# Favicon sizes
 Generate-ResizedImage -Source $srcBmp -Width 32 -Height 32 -TargetPath (Join-Path $clientPublic "favicon-32x32.png")
 Generate-ResizedImage -Source $srcBmp -Width 192 -Height 192 -TargetPath (Join-Path $clientPublic "favicon-192x192.png")
 Generate-ResizedImage -Source $srcBmp -Width 180 -Height 180 -TargetPath (Join-Path $clientPublic "apple-touch-icon.png")
 Generate-ResizedImage -Source $srcBmp -Width 256 -Height 256 -TargetPath (Join-Path $clientPublic "favicon.png")
-
-# Also for favicon.ico, save 48x48 PNG or ICO
 Generate-ResizedImage -Source $srcBmp -Width 48 -Height 48 -TargetPath (Join-Path $clientPublic "favicon.ico")
 
 $srcBmp.Dispose()
-Write-Output "All icons and logos ready!"
+Write-Output "All icons and logos ready and optimized!"

@@ -7,7 +7,7 @@ import { fallbackDestinations, waLink } from '../data/siteConfig';
 import { getDestinationImage } from '../utils/media';
 
 const DestinationsSection = ({ limit, showHeading = true }) => {
-  const { data: destinations } = useContent(destinationApi.list, fallbackDestinations);
+  const { data: destinations } = useContent(destinationApi.list, fallbackDestinations, 'destinations');
   const { data: settings } = useSettings();
   const availableDestinations = destinations.filter((destination) => {
     const name = (destination.to || '').toLowerCase();
@@ -42,6 +42,8 @@ const DestinationsSection = ({ limit, showHeading = true }) => {
                   <img
                     src={getDestinationImage(d)}
                     alt={d.to}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       const to = (d?.to || '').toLowerCase();

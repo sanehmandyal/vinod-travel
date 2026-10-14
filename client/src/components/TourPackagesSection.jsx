@@ -7,7 +7,7 @@ import { fallbackTourPackages, waLink } from '../data/siteConfig';
 import { getTourPackageImage } from '../utils/media';
 
 const TourPackagesSection = ({ limit, showHeading = true }) => {
-  const { data: packages } = useContent(tourPackageApi.list, fallbackTourPackages);
+  const { data: packages } = useContent(tourPackageApi.list, fallbackTourPackages, 'tour_packages');
   const { data: settings } = useSettings();
   const list = limit ? packages.slice(0, limit) : packages;
 
@@ -43,6 +43,8 @@ const TourPackagesSection = ({ limit, showHeading = true }) => {
                   <img
                     src={getTourPackageImage(t)}
                     alt={t.title}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover group-hover/img:scale-105 transition-transform duration-700"
                     onError={(e) => {
                       const title = (t?.title || '').toLowerCase();
