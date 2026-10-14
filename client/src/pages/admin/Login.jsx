@@ -37,12 +37,16 @@ const Login = () => {
   return (
     <div className="min-h-screen bg-primary flex items-center justify-center px-gutter-mobile">
       <div className="w-full max-w-md bg-surface-container-lowest rounded-3xl shadow-2xl p-space-xl space-y-space-md">
-        <div className="flex flex-col items-center gap-2 pb-space-sm">
-          <div className="w-14 h-14 rounded-full bg-primary flex items-center justify-center text-secondary-fixed">
-            <Icon name="directions_car" className="text-[28px]" />
+        <div className="flex flex-col items-center gap-3 pb-space-sm">
+          <img
+            src="/logo.png"
+            alt="Vinod Tour and Travels"
+            className="w-20 h-20 rounded-full object-cover shadow-lg ring-4 ring-primary/20"
+          />
+          <div className="text-center">
+            <h1 className="font-headline-sm text-headline-sm text-primary font-bold">Vinod Travels Admin</h1>
+            <p className="font-body-sm text-body-sm text-on-surface-variant">Sign in to manage bookings &amp; content</p>
           </div>
-          <h1 className="font-headline-sm text-headline-sm text-primary font-bold">Vinod Travels Admin</h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant">Sign in to manage bookings &amp; content</p>
         </div>
         <form className="space-y-space-sm" onSubmit={handleSubmit}>
           <div className="space-y-1">

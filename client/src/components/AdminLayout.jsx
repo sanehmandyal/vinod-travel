@@ -27,10 +27,12 @@ const AdminLayout = ({ children, title }) => {
   return (
     <div className="min-h-screen bg-surface flex">
       <aside className="hidden md:flex md:flex-col w-64 bg-primary text-on-primary p-space-md shrink-0">
-        <div className="flex items-center gap-2 pb-space-lg">
-          <div className="w-9 h-9 rounded-full bg-primary-container flex items-center justify-center text-secondary-fixed">
-            <Icon name="directions_car" className="text-[20px]" />
-          </div>
+        <div className="flex items-center gap-2.5 pb-space-lg">
+          <img
+            src="/logo.png"
+            alt="Vinod Travels"
+            className="w-10 h-10 rounded-full object-cover shrink-0 shadow-md ring-1 ring-white/20"
+          />
           <div>
             <div className="font-title-md text-title-md font-bold">Vinod Travels</div>
             <div className="text-label-sm font-label-sm text-primary-fixed-dim">Admin Panel</div>

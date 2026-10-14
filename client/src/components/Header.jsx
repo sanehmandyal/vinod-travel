@@ -72,9 +72,11 @@ const Header = () => {
       {/* Main nav */}
       <div className="min-h-20 max-w-max-width-content mx-auto px-gutter-mobile lg:px-gutter-desktop py-3 flex items-center justify-between gap-2 sm:gap-4">
         <Link to="/" className="flex items-center gap-2.5 sm:gap-3 group min-w-0">
-          <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center text-secondary-fixed shrink-0 shadow-md group-hover:scale-105 transition-transform">
-            <Icon name="directions_car" className="text-[22px]" />
-          </div>
+          <img
+            src="/logo.png"
+            alt={settings.businessName || 'Vinod Tour and Travels'}
+            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full object-cover shrink-0 shadow-md ring-2 ring-secondary/30 group-hover:scale-105 group-hover:ring-secondary transition-all"
+          />
           <div className="flex flex-col min-w-0">
             <span className="font-headline-sm text-base sm:text-lg font-bold text-primary tracking-tight group-hover:text-secondary transition-colors truncate">
               {settings.businessName || settings.name}

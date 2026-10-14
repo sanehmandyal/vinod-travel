@@ -11,10 +11,12 @@ const Footer = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-space-2xl pb-space-2xl">
         <div className="lg:col-span-2 space-y-space-md">
           <div className="flex items-center gap-space-sm">
-            <div className="w-9 h-9 rounded-full bg-primary flex items-center justify-center text-secondary-fixed shrink-0">
-              <Icon name="directions_car" className="text-[18px]" />
-            </div>
-            <span className="font-headline-sm text-headline-sm text-primary">{settings.businessName || settings.name}</span>
+            <img
+              src="/logo.png"
+              alt={settings.businessName || 'Vinod Tour and Travels'}
+              className="w-11 h-11 rounded-full object-cover shrink-0 shadow-md ring-2 ring-secondary/30"
+            />
+            <span className="font-headline-sm text-headline-sm text-primary font-bold">{settings.businessName || settings.name}</span>
           </div>
           <p className="font-body-md text-body-md text-on-surface-variant leading-relaxed">
             Premium passenger transit and curated mountain holiday itineraries rooted in authentic

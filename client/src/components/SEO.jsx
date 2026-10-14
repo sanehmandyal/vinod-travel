@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 
 const SITE_URL = 'https://vinod-tour-travel.vercel.app';
-const DEFAULT_IMAGE = `${SITE_URL}/images/vehicles/innova.jpg`;
+const DEFAULT_IMAGE = `${SITE_URL}/logo.png`;
 const DEFAULT_TITLE = 'Vinod Tour & Travels | #1 Taxi Service in Una Himachal | 24/7 Cab Booking ISBT Una';
 const DEFAULT_DESC =
   'Top-rated 24/7 taxi service in Una, Amb Andaura, Nangal, Anandpur Sahib, Dharamshala, Gaggal Airport & Daulatpur Chowk. Clean AC cars, expert hill drivers, guaranteed on-time pickup. Call +91 62305 21544.';
