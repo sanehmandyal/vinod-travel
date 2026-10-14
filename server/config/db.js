@@ -12,12 +12,11 @@ const connectDB = async () => {
     return cachedPromise;
   }
 
-  const defaultAtlasUri = 'mongodb://127.0.0.1:27017/vinod_tour_travels';
-  const primaryUri = process.env.MONGO_URI || (process.env.VERCEL ? defaultAtlasUri : 'mongodb://127.0.0.1:27017/vinod_tour_travels');
+  const primaryUri = process.env.MONGO_URI || 'mongodb://127.0.0.1:27017/vinod_tour_travels';
 
   cachedPromise = mongoose.connect(primaryUri, {
-    serverSelectionTimeoutMS: 15000,
-    connectTimeoutMS: 15000,
+    serverSelectionTimeoutMS: 8000,
+    connectTimeoutMS: 8000,
     bufferCommands: false,
   }).then((conn) => {
     console.log(`MongoDB Connected: ${conn.connection.host} (${conn.connection.name})`);
